@@ -1,4 +1,5 @@
 var Planet = {
+	
     Buttons: {},
 
     init: function () {

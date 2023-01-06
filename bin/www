@@ -1,0 +1,18 @@
+let app = require('../app');
+let debug = require('debug')('thegrindersofthegalaxy:server');
+let http = require('http');
+
+// let port = normalizePort(process.env.PORT || '0999');
+let port = '999';
+
+app.set('port', port);
+
+let server = http.createServer(app);
+
+server.on('error', () => {
+  console.log("DUEDEUDEUDEUED DIED");
+});
+
+server.listen(port, () => {
+    console.log("Connected to " + port);
+});

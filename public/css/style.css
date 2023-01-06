@@ -1,8 +1,37 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+  box-sizing: border-box;
+  
+}
+html {
+  overflow: hidden;
 }
 
-a {
-  color: #00B7FF;
+html, body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+#wrapper {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 80%;
+  width: 70%;
+  outline-style: solid;
+}
+
+#main {
+  width: 65%;
+  height: 95%;
+  outline-style: solid;
+}
+
+#eventlog {
+  width: 30%;
+  height: 95%;
+  outline-style: solid;
 }

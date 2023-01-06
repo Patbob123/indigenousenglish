@@ -1,43 +1,27 @@
 var Planet = {
-	
-    Buttons: {},
+	planetList: [
+		{
+			Name: "",
+			Size: "16" //rem
+		}
+	],
 
     init: function () {
-        this.log = $('<div>').attr({
+        this.planet = $('<div>').attr({
             id: 'planet'
         });
 
-        this.log.prependTo('div#main')
+        let planetModel = $('<div>').addClass('planetModel');
+		let sides = $('<div>');
+		for(let i = 0; i < 5; i++){
+			sides.append($('<span>').attr({
+				style: "--i:"+i
+			}))
+		}
+		planetModel.append($('<div>').addClass('planetTop'));
+		planetModel.append(sides);
+        this.planet.append(planetModel)
 
-        // this.addItem("Thing", 1)
+        this.planet.prependTo('div#main')
     },
-    
-	addItem: function(amount, module) {
-		console.log(amount)
-		if(typeof amount == 'undefined') return;
-		if(module != null) {
-				if(typeof this.inventorySlots[module] == 'undefined') {
-					this.inventorySlots[module] = 0;
-				}
-				this.inventorySlots[module]+=amount;
-		}
-	},
-    setItem: function(amount, module) {
-		console.log(amount)
-		if(typeof amount == 'undefined') return;
-		if(module != null) {
-				if(typeof this.inventorySlots[module] == 'undefined') {
-					this.inventorySlots[module] = 0;
-				}
-				this.inventorySlots[module]=amount;
-		}
-	},
-
-    printInventory: function(t) {
-		console.log(t)
-		let text = $('<div>').addClass('eventTxt').css('opacity', '0').text(t).prependTo('div#eventlog');
-		text.animate({opacity: 1}, 500, 'linear', function() {
-			// EventLog.clearHidden();
-		});
-    }
 }

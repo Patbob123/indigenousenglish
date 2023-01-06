@@ -8,50 +8,64 @@ var Inventory = {
 
         this.log.prependTo('div#main')
 
-        this.setItem("Thing", 4)
-        this.setItem("Thing", 4)
-        this.setItem("Thing", 4)
-        this.setItem("Thing", 4)
-        this.setItem("Thing", 4)
-        this.setItem("Thing", 4)
-        this.setItem("Thing", 4)
-        this.setItem("Thing", 4)
+        this.setItem("a", 4)
+        this.setItem("b", 4)
+        this.setItem("c", 4)
+        this.setItem("d", 4)
+        this.setItem("e", 4)
+        this.setItem("g", 4)
+        this.setItem("f", 4)
+        this.setItem("h", 4)
+        this.setItem("i", 4)
+        this.setItem("EE", 4)
+        console.log(this.inventorySlots)
     },
     
-	setItem: function(amount, type) {
+	addItem: function(type, amount) {
 		console.log(type)
-		if(typeof type == 'undefined') return;
-		if(type != null) {
-				if(typeof this.inventorySlots[amount] == 'undefined') {
-					this.inventorySlots[amount] = 0;
+		if(typeof amount != 'number') return;
+		if(amount != null) {
+				if(typeof this.inventorySlots[type] == 'undefined') {
+					this.inventorySlots[type] = amount;
+                    this.printInventory(type)
 				}
-				this.inventorySlots[amount]+=type;
-                this.printInventory()
+				this.inventorySlots[type]+=amount;
+               this.updateInventory(type)
 		}
 	},
-    setItem: function(amount, type) {
-		console.log(type)
-		if(typeof type == 'undefined') return;
-		if(type != null) {
-				if(typeof this.inventorySlots[amount] == 'undefined') {
-					this.inventorySlots[amount] = 0;
+    setItem: function(type, amount) {
+		console.log(amount)
+		if(typeof amount != 'number') return;
+		if(amount != null) {
+				if(typeof this.inventorySlots[type] == 'undefined') {
+					this.inventorySlots[type] = amount;
+                    this.printInventory(type)
 				}
-				this.inventorySlots[amount]=type;
-                this.printInventory()
+				this.inventorySlots[type]=amount;
+               this.updateInventory(type)
+                
 		}
 	},
 
-    printInventory: function() {
-        for(let i in this.inventorySlots){
-            let slot = $('<div>').addClass('inventorySlot').css('opacity', '0').prependTo('div#inventory');
-            console.log(this.inventorySlots)
-            console.log(this.inventorySlots[i])
-            let number = $('<div>').addClass('invNumber invText').text(this.inventorySlots[i]).prependTo(slot)
-            let name = $('<div>').addClass('invName invText').text(i).prependTo(slot)
+    printInventory: function(type) {
+        console.log(this.inventorySlots)
+        
+            let slot = $('<div>').addClass('inventorySlot').css('opacity', '0').prependTo('div#inventory')
+
+            console.log(this.inventorySlots[type])
+            let number = $('<div>').addClass('invNumber invText').text(this.inventorySlots[type]).attr({id: type}).prependTo(slot)
+            let name = $('<div>').addClass('invName invText').text(type).prependTo(slot)
+            
+          
+         
             slot.animate({opacity: 1}, 500, 'linear', function() {
                 // EventLog.clearHidden();
             });
-        }
+        
 		
+    },
+    updateInventory: function(type){
+        $('#'+type).text(this.inventorySlots[type])
+
     }
 }

@@ -1,0 +1,16 @@
+#eventlog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    height: 95%;
+    padding: 2%;
+    gap: 1rem;
+
+    outline-style: solid;
+}
+
+.eventTxt {
+    font-size: large;
+    overflow-wrap: break-word;
+}

@@ -2,7 +2,7 @@ var sm = {
     MAX_INV_COUNT: 99999,
     state: {},
 	init: function() {
-		var states = [
+		let states = [
 			'features',     
 			'inv',    
 			'char',   
@@ -15,7 +15,7 @@ var sm = {
 		];
 
 		for(var name in states) {
-			if(!$SM.get(states[name])) $SM.set(states[name], {});
+			if(!sm.get(states[name])) sm.set(states[name], {});
 		}
 	},
 
@@ -23,12 +23,34 @@ var sm = {
         if(val > this.MAX_INV_COUNT) val = this.MAX_INV_COUNT;
 
 		try{
-			eval('('+fullPath+') = value');
+			eval('(this.state'+stateName+') = val');
 		} catch (e) {
 			//parent doesn't exist, so make parent
-			$SM.createState(stateName, value);
+			sm.createState(stateName, val);
 		}
     },
+	add: function(stateName, val) {
+        if(sm.get(stateName)+val > this.MAX_INV_COUNT) val = this.MAX_INV_COUNT;
+
+		try{
+			eval('(this.state'+stateName+') += val');
+		} catch (e) {
+			//parent doesn't exist, so make parent
+			sm.createState(stateName, val);
+		}
+    },
+	get: function(stateName) {
+		let whichState = null;
+		//catch errors if parent of state doesn't exist
+		try{
+			eval('whichState = (this.state'+stateName+')');
+		} catch (e) {
+			whichState = undefined;
+		}
+
+		if((!whichState || whichState == {})) return 0;
+		else return whichState;
+	},
 
     createState(stateName, val) {
 		let words = stateName.split(".");

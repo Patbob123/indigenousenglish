@@ -1,7 +1,7 @@
 var Game = window.Engine = {
 
     init: function () {
-        $SM.init();
+        sm.init();
         EventLog.init();
         Inventory.init();
         Planet.init();

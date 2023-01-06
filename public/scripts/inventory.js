@@ -19,6 +19,7 @@ var Inventory = {
         this.setItem("i", 4)
         this.setItem("EE", 4)
         console.log(this.inventorySlots)
+        sm.set('inv.wood',4)
     },
     
 	addItem: function(type, amount) {

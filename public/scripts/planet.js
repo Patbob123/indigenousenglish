@@ -5,7 +5,6 @@ var Planet = {
             id: 'planet'
         });
 
-        let planetClip = $('<div>').addClass('planetClip');
         let planetModel = $('<div>').addClass('planetModel');
 		let sides = $('<div>');
 		for(let i = 0; i < 5; i++){
@@ -15,8 +14,7 @@ var Planet = {
 		}
 		planetModel.append($('<div>').addClass('planetTop'));
 		planetModel.append(sides);
-		planetClip.append(planetModel)
-        this.planet.append(planetClip)
+        this.planet.append(planetModel)
 
         this.planet.prependTo('div#main')
     },

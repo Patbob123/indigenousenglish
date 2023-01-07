@@ -9,13 +9,34 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Dosis';
-}
-html {
-  overflow: hidden;
-  /* background: radial-gradient(circle at 100px 100px, #1b181f 21.2%, #320459 84.8%); */
+  /* color: aliceblue; */
 }
 
-html, body {
+html {
+  overflow: hidden;
+  animation: backgroundAnim 0.5s linear infinite;
+}
+
+/* @keyframes backgroundAnim {
+  0% {
+    background: radial-gradient(circle, #320459, #2b0e4b, #26133c, #20162e, #1b181f);
+  }
+  25% {
+    background: radial-gradient(circle, #2b0e4b, #320459, #26133c, #20162e, #1b181f);
+  }
+  50% {
+    background: radial-gradient(circle, #2b0e4b, #26133c, #320459, #20162e, #1b181f);
+  }
+  75% {
+    background: radial-gradient(circle, #2b0e4b, #26133c, #20162e, #320459, #1b181f);
+  } 
+  100% {
+    background: radial-gradient(circle, #1b181f, #20162e, #26133c, #2b0e4b, #320459);
+  }
+} */
+
+html,
+body {
   display: flex;
   justify-content: center;
   align-items: center;

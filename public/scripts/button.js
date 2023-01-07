@@ -13,7 +13,7 @@ var Button = {
 					Button.startCooldown($(this));
 					$(this).data("handler")($(this));
 				}
-                Status.updateStatus(2)
+                Status.updateStatus("heat", 30)
 			})
 			.data("handler", options.click)
 			.data("originalTxt", options.text)

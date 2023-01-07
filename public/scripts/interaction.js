@@ -10,18 +10,23 @@ var Interaction = {
     },
 
     addInter: async function(goto) { 
-        let a = $('<a>')
-        let interBtn = await $('<div>').addClass('interBtn')
-            .attr({
-                id: 'a',
-                index: 0
-            })
-            .css('opacity', 0)
-            .click(this.clcicked)
-            interBtn.append(a)
-            interBtn.animate({opacity: 1}, 1000, 'linear');
-          
-        this.inter.append(interBtn)
+        console.log(sm.get('planets.curPlanet'))
+        let curPlanet = sm.get('planets.curPlanet')==-1?0:sm.get('planets.curPlanet')
+        let planetBtns = eval(Navigation.planetList[sm.get('planets.curPlanet')]["Name"]).planetBtns;
+        for(let i in planetBtns){
+            if(sm.get('features.'+Navigation.planetList[sm.get('planets.curPlanet')]["Name"]+"."+i) == true){
+                let a = $('<a>')
+                let interBtn = planetBtns[i]
+                interBtn.append(a)
+                interBtn.animate({opacity: 1}, 1000, 'linear');
+              
+            this.inter.append(interBtn)
+            }else{
+                sm.set('features.'+Navigation.planetList[sm.get('planets.curPlanet')]["Name"]+"."+i, false)
+            }
+        }
+       
+        
 
     },
     clcicked: function(){

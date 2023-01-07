@@ -65,6 +65,7 @@ var sm = {
     },
 
 	unlockPlanet: function(goto) { 
+		console.log("PLANET 1 UNLOCCKED")
         sm.add('planets.unlocked', 1);
 		Navigation.addNav(goto);
 	}

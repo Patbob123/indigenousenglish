@@ -1,13 +1,13 @@
 var Earth = {
     earthBtns: {},
     init: function () {
-        this.earthBtns = {
+        this.planetBtns = {
             "walk": new Button.Button({
                 id: 'walkBtn',
                 text: _("take a step"),
                 click: Outside.gatherWood,
                 cooldown: 1000,
-                width: '80px'
+                width: '80px',
             }),
             "stone": new Button.Button({
                 id: 'stoneBtn',
@@ -19,14 +19,14 @@ var Earth = {
                         'steps': 5
                     };
                 },
-                width: '80px'
+                width: '80px',
             }),
             "wood": new Button.Button({
                 id: 'woodBtn',
                 text: _("gather wood"),
                 click: Outside.gatherWood,
                 cooldown: 5000,
-                width: '80px'
+                width: '80px',
             }),
             "kill": new Button.Button({
                 id: 'killBtn',
@@ -39,14 +39,14 @@ var Earth = {
                         'stone': 2,
                     };
                 },
-                width: '80px'
+                width: '80px',
             }),
         }
 
 
     },
     createButton(id) {
-        new Button.Button()
+        
     }
 
 }

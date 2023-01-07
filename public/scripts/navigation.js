@@ -3,11 +3,9 @@ var Navigation = {
 		{
 			Name: "Earth",
 			Size: "16",
-            Color1: "#000000",
-            Color2: "#000000",
-            Color3: "#000000", //rem,
+            Background: "linear-gradient(217deg, #4e6447, #0000ff40),linear-gradient(127deg, #5878e9, #4e644740),linear-gradient(336deg, #ffffff, #ffffff);"
 		},
-		{
+        {
 			Name: "Venus",
 			Size: "16", //rem,
             Color1: "#fcb103",

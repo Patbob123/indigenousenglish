@@ -7,8 +7,7 @@
     height: 70%;
     padding: 2%;
     gap: 1rem;
-    background-color: aqua;
-    /* outline-style: solid; */
+    outline-style: solid;
 
     background: rgba(255, 255, 255, 0.2);
     border-radius: 5rem;
@@ -38,13 +37,17 @@
 }
 
 .planetTop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: var(--size);
-    height: var(--size);
-    background: radial-gradient(circle at 100px 100px, var(--color1), var(--color2), var(--color3));
-    transform: rotateX(90deg) translateZ(var(--halfsize));
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--size);
+  height: var(--size);
+  background: radial-gradient(var(--color1), var(--color2));
+  transform: rotateX(90deg) translateZ(var(--halfsize));
+  /* background: 
+  linear-gradient(217deg, #4e6447, rgba(0,0,255,0.25)),
+  linear-gradient(127deg, #5878e9, rgba(0,255,0,0.25)),
+  linear-gradient(336deg, #b6c1ca, rgb(0,0,255)); */
 }
 
 .planetModel div {
@@ -64,8 +67,8 @@
     height: 100%;
     width: 100%;
     /* background: linear-gradient(#e66465, #9198e5); */
-    background: radial-gradient(circle at 100px 100px, var(--color1), var(--color2), var(--color3));
+    background: radial-gradient(var(--color1), var(--color2));
     transform: rotateY(calc(90deg * var(--i))) translateZ(var(--halfsize));
-}
+  }
 
 

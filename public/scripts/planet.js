@@ -5,24 +5,25 @@ var Planet = {
             id: 'planet'
         });
 
-        this.createPlanet(1)
+        this.createPlanet(0)
         this.planet.prependTo('div#main')
     },
 	createPlanet: function(index){
 console.log()
 		let planetModel = $('<div>').addClass('planetModel').attr({
 			style: "--size:"+Navigation.planetList[index]["Size"]+"vh;"+
-			"--halfsize:"+Navigation.planetList[index]["Size"]/2+"vh;"+
-			"--color1:"+Navigation.planetList[index]["Color1"]+";"+
-			"--color2:"+Navigation.planetList[index]["Color2"]
+			"--halfsize:"+Navigation.planetList[index]["Size"]/2+"vh;"
 		});
 		let sides = $('<div>');
 		for(let i = 0; i < 5; i++){
 			sides.append($('<span>').attr({
-				style: "--i:"+i
+				style: "--i:"+i+";"+
+				"background:"+Navigation.planetList[index]["Background"]+";"
 			}))
 		}
-		planetModel.append($('<div>').addClass('planetTop'));
+		planetModel.append($('<div>').addClass('planetTop').attr({
+			style: "background:"+Navigation.planetList[index]["Background"]+";"
+		}));
 		planetModel.append(sides);
         this.planet.append(planetModel)
 

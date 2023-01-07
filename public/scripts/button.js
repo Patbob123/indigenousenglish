@@ -9,6 +9,7 @@ var Button = {
 					Button.startCooldown($(this));
 					$(this).data("handler")($(this));
 				}
+                Status.updateStatus(2)
 			})
 			.data("handler", options.click);
 		// for(let i = 0; i< 4; i++) {
@@ -56,7 +57,7 @@ var Button = {
 };
 
 
-/BUTTON ANIMtTOIN
-GIVE PLANET MODEL ITS OWN PANEL
-ADD EVENTS
-ADD statusbar, temp and oxygen [hunger
+// /BUTTON ANIMtTOIN
+// GIVE PLANET MODEL ITS OWN PANEL
+// ADD EVENTS
+// ADD statusbar, temp and oxygen [hunger

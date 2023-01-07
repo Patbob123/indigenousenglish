@@ -1,0 +1,56 @@
+
+.progressbar {
+	position: relative;
+	width: 170px;
+	height: 170px;
+	margin: 1em;
+	transform: rotate(-90deg);
+}
+
+.progressbar__svg {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.progressbar__svg-circle {
+	width: 100%;
+	height: 100%;
+	fill: none;
+	stroke-width: 10;
+	stroke-dasharray: 440;
+	stroke-dashoffset: 440;
+	stroke: hsl(0, 0%, 100%);
+	stroke-linecap: round; 
+	transform: translate(5px, 5px);
+}
+
+.shadow {
+	filter: drop-shadow(0 0 5px #5ecff2);
+}
+
+.circle {
+	animation: anim_circle 2s ease-in-out forwards;
+}
+
+.progressbar__text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	padding: 0.25em 0.5em;
+	color: hsl(0, 0%, 100%);
+	font-family: Arial, Helvetica, sans-serif;
+	border-radius: 0.25em;
+	transform: translate(-50%, -50%) rotate(90deg);
+}
+
+
+@keyframes anim_circle {
+	0%{
+		stroke-dasharray: var(--percent);
+	}
+	100%{
+		stroke-dasharray: var(--newpercent);
+	}
+}
+

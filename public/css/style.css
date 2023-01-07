@@ -4,6 +4,7 @@
 @import "./inventory.css";
 @import "./navigation.css";
 @import "./interaction.css";
+@import "./status.css";
 @import "./bg.css";
 
 * {

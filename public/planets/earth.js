@@ -50,8 +50,10 @@ var Earth = {
                 EventLog.addEvent("keep going.");
                 break;
             case 3:
-                EventLog.addEvent("a stone appears.");
+                EventLog.addEvent("a stone, man's first tool.");
                 break;
+            default:
+                EventLog.addEvent("walking.")
         }
         Inventory.addItem('steps', 1);
         Interaction.unlockFeature('Earth.stone', sm.get('inv.steps') >= 3)
@@ -67,13 +69,15 @@ var Earth = {
                 EventLog.addEvent("that's another one.");
                 break;
             case 3:
-                EventLog.addEvent("more. stones.")
+                EventLog.addEvent("not elegant, but stones will get the job done.")
                 break;
-            case 3:
+            case 4:
                 EventLog.addEvent("time to put these stones to use.")
                 Interaction.unlockFeature('Earth.wood');
                 Interaction.unlockFeature('Earth.kill');
                 break;
+            default:
+                EventLog.addEvent("more. stones.")
         }
         Inventory.addItem('stone', 1);
     },

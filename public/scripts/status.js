@@ -1,7 +1,7 @@
 var Status = {
     statusList: {
         "heat":{
-            Name: "HEAT",
+            Name: "heat",
             Start: 100,
             Size: 50,
             Color1: "#fcb103",
@@ -9,7 +9,7 @@ var Status = {
             Color3: "#8f4500",
         },
         "oxygen":{
-            Name: "O2",
+            Name: "oxygen",
             Start: 100,
             Size: 50,
             Color1: "#fc2c03",
@@ -17,7 +17,7 @@ var Status = {
             Color3: "#8f4500",
         },
         "hunger":{
-            Name: "HUNGER",
+            Name: "hunger",
             Start: 100,
             Size: 50,
             Color1: "#8f4500",

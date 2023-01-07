@@ -10,15 +10,17 @@ var Interaction = {
     },
 
     addInter: async function(goto) { 
-        let interBtn = await $('<button>').addClass('navBtn')
+        let a = $('<a>')
+        let interBtn = await $('<div>').addClass('interBtn')
             .attr({
                 id: 'a',
                 index: 0
             })
-            .text("AAAA")
             .css('opacity', 0)
             .click(this.clcicked)
+            interBtn.append(a)
             interBtn.animate({opacity: 1}, 1000, 'linear');
+          
         this.inter.append(interBtn)
 
     },

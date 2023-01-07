@@ -1,12 +1,14 @@
 var Button = {
 	Button: function (options) {
-		if(!options.hasOwnProperty('hover')) options.hover = options.text
-		if(!options.hasOwnProperty('condition')) options.condition = () => true;
-		if(!options.hasOwnProperty('cost')) options.cost = {};
+		if (!options.hasOwnProperty('hover')) options.hover = options.text
+		if (!options.hasOwnProperty('condition')) options.condition = () => true;
+		if (!options.hasOwnProperty('cost')) options.cost = {};
+		if (!options.hasOwnProperty('reject')) options.reject = () => { };
+
 		let buttonElement = $('<div>')
 			.attr({
 				id: options.id,
-				style: '--time:'+options.cooldown*5+'ms'
+				style: '--time:' + options.cooldown * 5 + 'ms'
 			})
 			.addClass('interBtn noselect')
 			.click(function () {
@@ -14,10 +16,13 @@ var Button = {
 					$(this).addClass('disabled');
 					Button.startCooldown($(this));
 					$(this).data("handler")($(this));
+				} else if(Button.useCost($(this).data("cost"))) {
+					$(this).data("reject")($(this));
 				}
-                Status.updateStatus("heat", 30)
+				Status.updateStatus("heat", 30)
 			})
 			.data("handler", options.click)
+			.data("reject", options.reject)
 			.data("condition", options.condition)
 			.data("cost", options.cost)
 			.data("originalTxt", options.text)
@@ -53,13 +58,13 @@ var Button = {
 		return buttonElement;
 	},
 
-	useCost: function(costs) {
-		if(costs == {}) return true;
-		for(let item in costs) {
-			if(sm.get('inv.'+item) < costs[item]) return false;
+	useCost: function (costs) {
+		if (costs == {}) return true;
+		for (let item in costs) {
+			if (sm.get('inv.' + item) < costs[item]) return false;
 		}
-		for(let item in costs) {
-			Inventory.addItem(item, costs[item]*-1);
+		for (let item in costs) {
+			Inventory.addItem(item, costs[item] * -1);
 		}
 		return true;
 	},
@@ -67,8 +72,8 @@ var Button = {
 	startCooldown: function (btn) {
 		let time = sm.get('cooldown.' + $(btn)[0].id)
 
-		if(Game.godMode) {
-			time /= 3;
+		if (Game.options.godMode) {
+			time = 10;
 		}
 		// console.log(time, $(btn),cooldownElement[0])
 		// if (Game.options.doubleTime) time /= 2;
@@ -80,7 +85,7 @@ var Button = {
 		let cooldownElement = $('<div>').addClass('cooldown')
 		// cooldownElement.innerHTML = ''
 		$(btn).append(cooldownElement)
-		cooldownElement.animate({width: '100%'}, time, 'linear', function () {
+		cooldownElement.animate({ width: '100%' }, time, 'linear', function () {
 			// console.log(time)
 			Button.clearCooldown(btn);
 			cooldownElement.remove();

@@ -21,9 +21,9 @@ var Earth = {
             "wood": new Button.Button({
                 id: 'woodBtn',
                 text: "gather wood",
-                click: Earth.takeStep,
+                click: Earth.gatherWood,
                 cooldown: 5000,
-                width: '80px',
+                hover: "Cost 4 Steps",
                 cost: {
                     'steps': 4,
                 },
@@ -31,8 +31,9 @@ var Earth = {
             "kill": new Button.Button({
                 id: 'killBtn',
                 text: "kill",
-                click: Earth.takeStep,
+                click: Earth.kill,
                 cooldown: 10000,
+                hover: "Cost 12 Steps, 3 Stones",
                 cost: {
                     'steps': 12,
                     'stone': 2
@@ -69,7 +70,7 @@ var Earth = {
             case 3:
                 EventLog.addEvent("more. stones.")
                 break;
-            case 3:
+            case 4:
                 EventLog.addEvent("time to put these stones to use.")
                 Interaction.unlockFeature('Earth.wood');
                 Interaction.unlockFeature('Earth.kill');

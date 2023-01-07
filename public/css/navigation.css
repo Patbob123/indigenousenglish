@@ -25,12 +25,14 @@
     overflow:hidden;
     width: 100%;
     height: 8%;
-    outline-style: solid;
+    outline: double;
     background-color: #1b181f;
     
     font-size: larger;
 }
 
 .selectedPlanet {
-    background-color: #1b181f;
+    background-color: #2b0e4b;
+    outline-color: #6d25ad;
+    animation: transition 2s linear;
 }

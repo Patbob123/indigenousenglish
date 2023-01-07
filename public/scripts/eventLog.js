@@ -39,7 +39,7 @@ var EventLog = {
 	},
 
     printEvent: function(t) {
-		console.log(t)
+		// console.log(t)
 		let text = $('<div>').addClass('eventTxt').css('opacity', '0').text(t).prependTo('div#eventlog');
 		text.animate({opacity: 1}, 1000, 'linear', function() {
 			EventLog.clearHidden();
@@ -48,7 +48,7 @@ var EventLog = {
 	
 	clearHidden: function() {
 		let bottom = $('#eventlog').position().top + $('#eventlog').outerHeight(true);;
-		console.log(bottom)
+		// console.log(bottom)
 		$('.eventTxt').each(function() {
 		
 			if($(this).position().top > bottom){

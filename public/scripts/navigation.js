@@ -33,7 +33,7 @@ var Navigation = {
             id: 'navigation'
         });
 
-        sm.set('planets.curPlanet', 0);
+        sm.set('planets.curPlanet', -1);
         sm.set('planets.unlocked', -1);
         sm.unlockPlanet(true);
         sm.unlockPlanet(false);
@@ -60,11 +60,16 @@ var Navigation = {
     },
 
     changePlanet: function(e) {
+        let newPlanetIndex = typeof e == "number" ? e : e.currentTarget.getAttribute('index');
+        if(newPlanetIndex == sm.get('planets.curPlanet')) return;
+
+        if(sm.get('planets.curPlanet') != -1)
         $('#nav' + Navigation.planetList[sm.get('planets.curPlanet')].Name)[0].classList.remove('selectedPlanet')
 
-        let newPlanetIndex = typeof e == "number" ? e : e.currentTarget.getAttribute('index');
         sm.set('planets.curPlanet', newPlanetIndex);
         $('#nav' + Navigation.planetList[sm.get('planets.curPlanet')].Name).addClass('selectedPlanet')
+
+        Planet.createPlanet(0)
         // Planet.changePlanet
     }
 }

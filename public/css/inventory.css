@@ -29,7 +29,7 @@
     width: 22.5%;
     height: 40%;
     background: rgba(66, 2, 71, 0.2);
-    outline: thick double hsl(272, 65%, 41%);
+    outline: thick double #6d25ad;
     /* outline-style: solid; */
 }
 .invName{

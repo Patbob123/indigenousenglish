@@ -13,7 +13,7 @@ var Planet = {
 		this.planet.prependTo('div#main')
 	},
 	createPlanet: function (index) {
-		console.log()
+		$('.planetModel').remove()
 		let planetModel = $('<div>').addClass('planetModel').attr({
 			style: "--size:" + Navigation.planetList[index]["Size"] + "vh;" +
 				"--halfsize:" + Navigation.planetList[index]["Size"] / 2 + "vh;"
@@ -31,5 +31,5 @@ var Planet = {
 		planetModel.append(sides);
 		this.menu.append(planetModel)
 
-	}
+	},
 }

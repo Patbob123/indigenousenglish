@@ -1,6 +1,10 @@
 var Game = window.Engine = {
 
+    options: {},
+
     init: function () {
+        this.options.godMode = true;
+
         sm.init();
         EventLog.init();
         Status.init();

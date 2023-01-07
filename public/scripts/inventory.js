@@ -5,17 +5,17 @@ var Inventory = {
         });
 
         this.inv.prependTo('div#main')
-        this.setItem('wood',4)
-        this.setItem('stone',5)
-        this.setItem('stone',5)
-        this.addItem('stone',5)
+        // this.setItem('wood',4)
+        // this.setItem('stone',5)
+        // this.setItem('stone',5)
+        // this.addItem('stone',5)
     },
 
     addItem: function(type, amount) {
-        console.log(type)
+        // console.log(type)
         if(typeof amount != 'number') return;
         if(amount != null) {
-            if(sm.get('inv.'+type)==0){
+            if(sm.get('inv.'+type)==false){
                 sm.set('inv.'+type, 0);
                 this.printInventory(type)
             }
@@ -23,14 +23,15 @@ var Inventory = {
             this.updateInventory(type)
         }
     },
+    
     setItem: function(type, amount) {
         if(typeof amount != 'number') return;
         if(amount != null) {
 
-            if(sm.get('inv.'+type)==0){
+            if(sm.get('inv.'+type)==false){
 
                 sm.set('inv.'+type, 0);
-                console.log(sm.get('inv.'+type))
+                // console.log(sm.get('inv.'+type))
                 this.printInventory(type)
             }
             sm.set('inv.'+type, amount);

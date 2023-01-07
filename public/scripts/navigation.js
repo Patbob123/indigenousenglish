@@ -39,7 +39,7 @@ var Navigation = {
         sm.unlockPlanet(false);
         sm.unlockPlanet(false);
 
-        $('#planet').append(this.nav)
+        $('#planet').prepend(this.nav)
     },
 
     addNav: async function(goto) { 

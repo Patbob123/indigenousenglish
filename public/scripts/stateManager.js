@@ -3,7 +3,8 @@ var sm = {
     state: {},
 	init: function() {
 		let states = [
-			'features',     
+			'features',  
+			'planets',   
 			'inv',    
 			'char',   
 			'income',
@@ -52,7 +53,7 @@ var sm = {
 		else return whichState;
 	},
 
-    createState(stateName, val) {
+    createState: function(stateName, val) {
 		let words = stateName.split(".");
         
         let cur = this.state;
@@ -61,7 +62,12 @@ var sm = {
             cur = cur[words[i]];
         }
         cur[words.length-1] = val;
-    }
+    },
+
+	unlockPlanet: function(goto) { 
+        sm.add('planets.unlocked', 1);
+		Navigation.addNav(goto);
+	}
 
 
 }

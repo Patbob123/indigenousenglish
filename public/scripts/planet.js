@@ -1,16 +1,11 @@
 var Planet = {
-	planetList: [
-		{
-			Name: "",
-			Size: "16" //rem
-		}
-	],
 
     init: function () {
         this.planet = $('<div>').attr({
             id: 'planet'
         });
 
+        let planetClip = $('<div>').addClass('planetClip');
         let planetModel = $('<div>').addClass('planetModel');
 		let sides = $('<div>');
 		for(let i = 0; i < 5; i++){
@@ -20,7 +15,8 @@ var Planet = {
 		}
 		planetModel.append($('<div>').addClass('planetTop'));
 		planetModel.append(sides);
-        this.planet.append(planetModel)
+		planetClip.append(planetModel)
+        this.planet.append(planetClip)
 
         this.planet.prependTo('div#main')
     },

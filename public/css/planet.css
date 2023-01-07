@@ -11,6 +11,13 @@
     outline-style: solid;
 }
 
+.planetClip {
+    clip-path: circle(8rem at center);
+    border-radius: 50%;
+    width: 16rem;
+    height: 16rem;
+}
+
 .planetModel {
     position: relative;
     width: 16rem;
@@ -21,10 +28,10 @@
 
 @keyframes rotate {
   0% {
-    transform: rotateX(-30deg) rotateY(0deg);
+    transform: rotateX(-45deg) rotateY(0deg);
   }
   100% {
-    transform: rotateX(-30deg) rotateY(360deg);
+    transform: rotateX(-45deg) rotateY(360deg);
   }
 }
 

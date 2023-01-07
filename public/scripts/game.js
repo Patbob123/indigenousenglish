@@ -5,6 +5,7 @@ var Game = window.Engine = {
         EventLog.init();
         Inventory.init();
         Planet.init();
+        Navigation.init();
     }
 }
 

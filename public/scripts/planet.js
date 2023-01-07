@@ -9,7 +9,7 @@ var Planet = {
 			id: 'menu'
 		});
 		this.createPlanet(0)
-		this.planet.prepend(this.menu);
+		this.planet.append(this.menu);
 		this.planet.prependTo('div#main')
 	},
 	createPlanet: function (index) {
@@ -30,7 +30,7 @@ var Planet = {
 			style: "background-image:url(../images/"+Navigation.planetList[index]["Name"]+".png"
 		}));
 		planetModel.append(sides);
-		this.menu.append(planetModel)
+		this.menu.prepend(planetModel)
 
 	},
 }

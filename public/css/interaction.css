@@ -1,57 +1,70 @@
 #interaction {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width:60%;
-    height: 100%;
-    margin-top:1%;
-    background-color: tomato;
-    gap: 1rem;
-    overflow-y:scroll;
-    white-space: nowrap;
-    margin-bottom: 0;
-    
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 60%;
+  height: 100%;
+  margin-top: 1%;
+  background-color: tomato;
+  gap: 1rem;
+  overflow-y: scroll;
+  white-space: nowrap;
+  margin-bottom: 0;
+
 }
-.interBtn{
-    position: relative;
-    display: inline-flex;
-    width: 180px;
-    height: 55px;
-    margin: 0 15px;
-    perspective: 1000px;
-  }
-  .interBtn a{
-    font-size: 19px;
-    letter-spacing: 1px;
-    transform-style: preserve-3d;
-    transform: translateZ(-25px);
-    transition: transform .25s;
-    font-family: 'Montserrat', sans-serif;
-    
-  }
-  .interBtn a:before,
-  .interBtn a:after{
-    position: absolute;
-    content: "e";
-    height: 55px;
-    width: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 5px solid black;
-    box-sizing: border-box;
-    border-radius: 5px;
-  }
-  .interBtn a:before{
-    color: #fff;
-    background: #000;
-    transform: rotateY(0deg) translateZ(25px);
-  }
-  .interBtn a:after{
-    color: #000;
-    transform: rotateX(90deg) translateZ(25px);
-  }
-  .interBtn a:hover{
-    transform: translateZ(-25px) rotateX(-90deg);
-  }
-  
+
+.interBtn {
+  position: relative;
+  display: inline-block;
+  padding: 30px 61px;
+  border-radius: 4px;
+  color: #03e9f4;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  margin: 25px;
+  font-family: "Roboto", sans-serif;
+  filter: hue-rotate(0deg);
+  border: 2px solid #d2bdff;
+  transition: all 0.1s linear;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+        -webkit-tap-highlight-color: transparent;
+}
+
+.interBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    width: 45%;
+    height: 20%;
+    cursor: pointer;
+    background: #6dd6d1;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 10px 25px #57aba7, 0px -10px 25px #a6fffa, inset 0px -5px 10px #57aba7, inset 0px 5px 10px #a6fffa;
+    font-family: 'Damion', cursive;
+    color: white;
+    font-size: small;
+    transition: 500ms;
+}
+
+.interBtn:hover {
+        border: 2px solid #6dd6d1;
+    animation: hueRotation 2s linear infinite;
+}
+
+@keyframes hueRotation {
+    to {filter: hue-rotate(360deg);}
+}
+
+.interBtn:focus {
+    outline: none;
+}

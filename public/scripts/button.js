@@ -1,23 +1,23 @@
 var Button = {
-	Button: function(options) {
+	Button: function (options) {
 		let buttonElement = $('<div>')
-			.attr({id: options.id} )
-			.addClass('button')
+			.attr({ id: options.id })
+			.addClass('interBtn noselect')
 			.text(options.text)
-			.click(function() {
-				if(!$(this).hasClass('disabled')) {
+			.click(function () {
+				if (!$(this).hasClass('disabled')) {
 					Button.startCooldown($(this));
 					$(this).data("handler")($(this));
 				}
 			})
-			.data("handler",  options.click)
-			.data("remaining", 0)
-			.data("cooldown", options.cooldown);
+			.data("handler", options.click);
+		// for(let i = 0; i< 4; i++) {
+		// 	$('<span>').prependTo(buttonElement)
+		// }
 
 		// el.append($("<div>").addClass('cooldown'));
-		
-		sm.set('cooldown.'+options.id, options.cooldown);
-		Button.startCooldown(buttonElement, 'state');
+
+		sm.set('cooldown.' + options.id, options.cooldown);
 
 		// if(options.cost) {
 		// 	var ttPos = options.ttPos ? options.ttPos : "bottom right";
@@ -38,23 +38,25 @@ var Button = {
 		return buttonElement;
 	},
 
-	startCooldown: function(btn) {
-		var cd = btn.data("cooldown");
-		// var id = 'cooldown.'+ btn.attr('id');
-		if(cd > 0) {
-			let time = sm.get('cooldown.'+btn.id)
+	startCooldown: function (btn) {
+		let time = sm.get('cooldown.' + $(btn)[0].id)
+		console.log(time, $(btn)[0])
+		// if (Game.options.doubleTime) time /= 2;
 
-			// if (Game.options.doubleTime) time /= 2;
+		$(btn).addClass('disabled');
 
-			$(btn).animate({'font-size': '30'}, time, 'linear', function() {
-				Button.clearCooldown(btn);
-			});
-
-			btn.addClass('disabled');
-		}
+		$(btn).animate({ 'font-size': '25' }, time *5, 'linear', function () {
+			Button.clearCooldown(btn);
+		});
 	},
 
-	clearCooldown: function(btn) {
-		btn.removeClass('disabled');
+	clearCooldown: function (btn) {
+		$(btn).removeClass('disabled');
 	}
 };
+
+
+/BUTTON ANIMtTOIN
+GIVE PLANET MODEL ITS OWN PANEL
+ADD EVENTS
+ADD statusbar, temp and oxygen [hunger

@@ -4,15 +4,15 @@ var Earth = {
         this.planetBtns = {
             "walk": new Button.Button({
                 id: 'walkBtn',
-                text: _("take a step"),
-                click: Outside.gatherWood,
+                text: "take a step",
+                click: Earth.takeStep,
                 cooldown: 1000,
                 width: '80px',
             }),
             "stone": new Button.Button({
                 id: 'stoneBtn',
-                text: _("pickup stone"),
-                click: Outside.gatherWood,
+                text: "pickup stone",
+                click: Earth.takeStep,
                 cooldown: 2000,
                 cost: function () {
                     return {
@@ -23,15 +23,15 @@ var Earth = {
             }),
             "wood": new Button.Button({
                 id: 'woodBtn',
-                text: _("gather wood"),
-                click: Outside.gatherWood,
+                text: "gather wood",
+                click: Earth.takeStep,
                 cooldown: 5000,
                 width: '80px',
             }),
             "kill": new Button.Button({
                 id: 'killBtn',
-                text: _("KILL"),
-                click: Outside.gatherWood,
+                text: "KILL",
+                click: Earth.takeStep,
                 cooldown: 10000,
                 cost: function () {
                     return {
@@ -45,8 +45,10 @@ var Earth = {
 
 
     },
-    createButton(id) {
-        
+    takeStep: function() {
+        sm.add('inv.steps',1);
+        if(sm.get('inv.steps') >= 5) sm.set('features.Earth.stone', true);
     }
+    
 
 }

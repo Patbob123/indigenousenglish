@@ -13,8 +13,8 @@
 
 .planetModel {
     position: relative;
-    width: 16rem;
-    height: 16rem;
+    width:var(--size);
+    height: var(--size);
     transform-style: preserve-3d;
     animation: rotate 4s linear infinite;
 }
@@ -32,10 +32,10 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 16rem;
-    width: 16rem;
-    background: radial-gradient(circle at 100px 100px, #5cabff, #000);
-    transform: rotateX(90deg) translateZ(8rem);
+    width: var(--size);
+    height: var(--size);
+    background: radial-gradient(circle at 100px 100px, var(--color1), var(--color2), var(--color3));
+    transform: rotateX(90deg) translateZ(var(--halfsize));
 }
 
 .planetModel div {
@@ -55,8 +55,8 @@
     height: 100%;
     width: 100%;
     /* background: linear-gradient(#e66465, #9198e5); */
-    background: radial-gradient(circle at 100px 100px, #5cabff, #000);
-    transform: rotateY(calc(90deg * var(--i))) translateZ(8rem);
+    background: radial-gradient(circle at 100px 100px, var(--color1), var(--color2), var(--color3));
+    transform: rotateY(calc(90deg * var(--i))) translateZ(var(--halfsize));
 }
 
 

@@ -2,19 +2,31 @@ var Navigation = {
 	planetList: [
 		{
 			Name: "Earth",
-			Size: "16" //rem,
+			Size: "16",
+            Color1: "#000000",
+            Color2: "#000000",
+            Color3: "#000000", //rem,
 		},
 		{
 			Name: "Venus",
-			Size: "16" //rem,
+			Size: "16", //rem,
+            Color1: "#fcb103",
+            Color2: "#fc2c03",
+            Color3: "#8f4500",
 		},
 		{
 			Name: "Mercury",
-			Size: "16" //rem,
+			Size: "16",
+            Color1: "#000000",
+            Color2: "#000000", 
+            Color3: "#000000",//rem,
 		},
 		{
 			Name: "Venus",
-			Size: "16" //rem,
+			Size: "16",
+            Color1: "#000000",
+            Color2: "#000000", 
+            Color3: "#000000",//rem,
 		}
 	],
 

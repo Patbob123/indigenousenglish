@@ -16,7 +16,7 @@ var sm = {
 		];
 
 		for(var name in states) {
-			if(!sm.get(states[name])) sm.set(states[name], {});
+			sm.set(states[name], {});
 		}
 	},
 
@@ -24,27 +24,26 @@ var sm = {
         if(val > this.MAX_INV_COUNT) val = this.MAX_INV_COUNT;
 
 		try{
-			eval('(this.state'+stateName+') = val');
+			eval('(this.state.'+stateName+') = val');
+			console.log('(this.state.'+stateName+')')
 		} catch (e) {
-			//parent doesn't exist, so make parent
 			sm.createState(stateName, val);
 		}
+		console.log(this.state)
     },
 	add: function(stateName, val) {
         if(sm.get(stateName)+val > this.MAX_INV_COUNT) val = this.MAX_INV_COUNT;
 
 		try{
-			eval('(this.state'+stateName+') += val');
+			eval('(this.state.'+stateName+') += val');
 		} catch (e) {
-			//parent doesn't exist, so make parent
 			sm.createState(stateName, val);
 		}
     },
 	get: function(stateName) {
 		let whichState = null;
-		//catch errors if parent of state doesn't exist
 		try{
-			eval('whichState = (this.state'+stateName+')');
+			eval('whichState = (this.state.'+stateName+')');
 		} catch (e) {
 			whichState = undefined;
 		}
@@ -58,10 +57,10 @@ var sm = {
         
         let cur = this.state;
         for(let i = 0; i < words.length-1; i++) {
-            if(cur[words[i] === undefined]) cur[words[i]] = {};
+            if(cur[words[i]] === undefined) cur[words[i]] = {};
             cur = cur[words[i]];
         }
-        cur[words.length-1] = val;
+        cur[words[words.length-1]] = val;
     },
 
 	unlockPlanet: function(goto) { 

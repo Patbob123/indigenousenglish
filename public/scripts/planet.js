@@ -1,31 +1,35 @@
 var Planet = {
 
-    init: function () {
-        this.planet = $('<div>').attr({
-            id: 'planet'
-        });
+	init: function () {
+		this.planet = $('<div>').attr({
+			id: 'planet'
+		});
 
-        this.createPlanet(0)
-        this.planet.prependTo('div#main')
-    },
-	createPlanet: function(index){
-console.log()
+		this.menu = $('<div>').attr({
+			id: 'menu'
+		});
+		this.createPlanet(0)
+		this.planet.append(this.menu);
+		this.planet.prependTo('div#main')
+	},
+	createPlanet: function (index) {
+		console.log()
 		let planetModel = $('<div>').addClass('planetModel').attr({
-			style: "--size:"+Navigation.planetList[index]["Size"]+"vh;"+
-			"--halfsize:"+Navigation.planetList[index]["Size"]/2+"vh;"
+			style: "--size:" + Navigation.planetList[index]["Size"] + "vh;" +
+				"--halfsize:" + Navigation.planetList[index]["Size"] / 2 + "vh;"
 		});
 		let sides = $('<div>');
-		for(let i = 0; i < 5; i++){
+		for (let i = 0; i < 5; i++) {
 			sides.append($('<span>').attr({
-				style: "--i:"+i+";"+
-				"background:"+Navigation.planetList[index]["Background"]+";"
+				style: "--i:" + i + ";" +
+					"background:" + Navigation.planetList[index]["Background"] + ";"
 			}))
 		}
 		planetModel.append($('<div>').addClass('planetTop').attr({
-			style: "background:"+Navigation.planetList[index]["Background"]+";"
+			style: "background:" + Navigation.planetList[index]["Background"] + ";"
 		}));
 		planetModel.append(sides);
-        this.planet.append(planetModel)
-		
+		this.menu.append(planetModel)
+
 	}
 }

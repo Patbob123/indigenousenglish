@@ -7,6 +7,8 @@ var Interaction = {
         $('#menu').append(this.inter)
         Earth.init();
         sm.set('features.Earth.walk', true)
+        sm.set('features.Earth.stone', true)
+        sm.set('features.Earth.wood', true)
 
         this.addInter()
     },

@@ -5,6 +5,7 @@ var Earth = {
             "walk": new Button.Button({
                 id: 'walkBtn',
                 text: "take a step",
+                hover: "OK",
                 click: Earth.takeStep,
                 cooldown: 1000,
                 width: '80px',

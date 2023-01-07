@@ -25,11 +25,6 @@ console.log()
 		planetModel.append($('<div>').addClass('planetTop'));
 		planetModel.append(sides);
         this.planet.append(planetModel)
-
-
-		// Navigation.planetList[index]["Color1"] = 
-		// Navigation.planetList[index]["Color2"]
-		// Navigation.planetList[index]["Name"]
 		
 	}
 }

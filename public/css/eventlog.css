@@ -4,13 +4,15 @@
     width: 20%;
     height: 95%;
     padding: 2%;
+    padding-top: 3%;
     gap: 1rem;
     overflow: hidden;
-
-    outline-style: solid;
+    border-radius: 2rem;
+    outline: thick double hsl(272, 65%, 41%);
 }
 
 .eventTxt {
     font-size: large;
     overflow-wrap: break-word;
+    background: none;
 }

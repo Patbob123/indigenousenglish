@@ -6,14 +6,10 @@
     height: 30%;
     padding: 2%;
     gap: 1rem;
-    overflow-y:scroll;
+    overflow-y:auto;
     white-space: nowrap;
     margin-bottom: 0;
-    outline-style: solid;
-}
-::-webkit-scrollbar {
-    width: 0;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
+    /* outline-style: solid; */
 }
 .inventorySlot {
     display: flex;
@@ -23,7 +19,8 @@
     overflow:hidden;
     width: 22.5%;
     height: 40%;
-    outline-style: solid;
+    outline: thick double hsl(272, 65%, 41%);
+    /* outline-style: solid; */
 }
 .invName{
     float:left

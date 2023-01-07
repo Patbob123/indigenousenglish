@@ -3,37 +3,19 @@
 @import "./planet.css";
 @import "./inventory.css";
 @import "./navigation.css";
+@import "./bg.css";
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Dosis';
-  /* color: aliceblue; */
+  color: aliceblue;
 }
 
 html {
   overflow: hidden;
-  animation: backgroundAnim 0.5s linear infinite;
 }
-
-/* @keyframes backgroundAnim {
-  0% {
-    background: radial-gradient(circle, #320459, #2b0e4b, #26133c, #20162e, #1b181f);
-  }
-  25% {
-    background: radial-gradient(circle, #2b0e4b, #320459, #26133c, #20162e, #1b181f);
-  }
-  50% {
-    background: radial-gradient(circle, #2b0e4b, #26133c, #320459, #20162e, #1b181f);
-  }
-  75% {
-    background: radial-gradient(circle, #2b0e4b, #26133c, #20162e, #320459, #1b181f);
-  } 
-  100% {
-    background: radial-gradient(circle, #1b181f, #20162e, #26133c, #2b0e4b, #320459);
-  }
-} */
 
 html,
 body {
@@ -51,11 +33,11 @@ body {
   justify-content: space-around;
   height: 80%;
   width: 70%;
-  outline-style: solid;
+  /* outline-style: solid; */
 }
 
 #main {
   width: 77%;
   height: 95%;
-  outline-style: solid;
+  /* outline-style: solid; */
 }

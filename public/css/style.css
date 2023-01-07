@@ -3,6 +3,7 @@
 @import "./planet.css";
 @import "./inventory.css";
 @import "./navigation.css";
+@import "./interaction.css";
 @import "./bg.css";
 
 * {

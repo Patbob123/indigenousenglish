@@ -9,7 +9,7 @@ var Planet = {
 			id: 'menu'
 		});
 		this.createPlanet(0)
-		this.planet.append(this.menu);
+		this.planet.prepend(this.menu);
 		this.planet.prependTo('div#main')
 	},
 	createPlanet: function (index) {

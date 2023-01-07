@@ -6,6 +6,7 @@ var Game = window.Engine = {
         Inventory.init();
         Planet.init();
         Navigation.init();
+        Interaction.init();
     }
 }
 

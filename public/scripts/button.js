@@ -8,7 +8,7 @@ var Button = {
 			this.data_handler = options.click;
 		}
 
-		var el = $('<div>')
+		let el = $('<div>')
 			.attr({id: option.id} )
 			.addClass('button')
 			.text(typeof(options.text) != 'undefined' ? options.text : "button")
@@ -18,13 +18,12 @@ var Button = {
 					$(this).data("handler")($(this));
 				}
 			})
-			.data("handler",  typeof options.click == 'function' ? options.click : function() { Engine.log("click"); })
+			.data("handler",  typeof options.click == 'function' ? options.click : function() { console.log("click"); })
 			.data("remaining", 0)
 			.data("cooldown", typeof options.cooldown == 'number' ? options.cooldown : 0);
 
 		el.append($("<div>").addClass('cooldown'));
 
-		// waiting for expiry of residual cooldown detected in state
 		Button.cooldown(el, 'state');
 
 		if(options.cost) {

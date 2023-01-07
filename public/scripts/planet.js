@@ -8,9 +8,13 @@ var Planet = {
 		this.menu = $('<div>').attr({
 			id: 'menu'
 		});
-		this.createPlanet(0)
+		this.planetPanel = $('<div>').attr({
+			id: 'planetPanel'
+		});
+		this.planetPanel.prependTo(this.menu);
 		this.planet.append(this.menu);
 		this.planet.prependTo('div#main')
+		this.createPlanet(0)
 	},
 	createPlanet: function (index) {
 		$('.planetModel').remove()
@@ -30,7 +34,7 @@ var Planet = {
 			style: "background-image:url(../images/"+Navigation.planetList[index]["Name"]+".png"
 		}));
 		planetModel.append(sides);
-		this.menu.prepend(planetModel)
+		this.planetPanel.prepend(planetModel)
 
 	},
 }

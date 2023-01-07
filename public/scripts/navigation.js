@@ -43,12 +43,13 @@ var Navigation = {
     },
 
     addNav: async function(goto) { 
-        let planedIndex =  sm.get('planets.unlocked')
-        let nextPlanet = this.planetList[planedIndex];   
+		// console.log(sm.get('planets'))
+        let planetIndex =  sm.get('planets.unlocked')
+        let nextPlanet = this.planetList[planetIndex];   
         let navBtn = await $('<button>').addClass('navBtn')
             .attr({
                 id: 'nav'+nextPlanet.Name,
-                index: planedIndex
+                index: planetIndex
             })
             .text(nextPlanet.Name)
             .css('opacity', 0)
@@ -56,7 +57,7 @@ var Navigation = {
 		navBtn.animate({opacity: 1}, 1000, 'linear');
         this.nav.append(navBtn)
 
-		if(goto) Navigation.changePlanet(planedIndex)
+		if(goto) Navigation.changePlanet(planetIndex)
     },
 
     changePlanet: function(e) {
@@ -70,6 +71,6 @@ var Navigation = {
         $('#nav' + Navigation.planetList[sm.get('planets.curPlanet')].Name).addClass('selectedPlanet')
 
         Planet.createPlanet(sm.get('planets.curPlanet'))
-        // Planet.changePlanet
+        Interaction.planetChanged();
     }
 }

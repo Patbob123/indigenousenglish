@@ -7,29 +7,49 @@ var Interaction = {
         $('#menu').append(this.inter)
         Earth.init();
         sm.set('features.Earth.walk', true)
-        sm.set('features.Earth.stone', true)
-        sm.set('features.Earth.wood', true)
 
-        this.addInter()
+        // this.newInter()
     },
 
-    addInter: function () {
+    newInter: function () {
 
         let curPlanet = sm.get('planets.curPlanet') == -1 ? 0 : sm.get('planets.curPlanet')
         let planetBtns = eval(Navigation.planetList[curPlanet]["Name"]).planetBtns;
 
         for (let i in planetBtns) {
             if (sm.get('features.' + Navigation.planetList[curPlanet]["Name"] + "." + i) == true) {
-                // let a = $('<a>')
-                let interBtn = planetBtns[i]
-                // interBtn.append(a)
-                // interBtn.animate({ opacity: 1 }, 1000, 'linear');
+                let interBtn = planetBtns[i].css('opacity', 0)
                 this.inter.append(interBtn)
+                interBtn.animate({ opacity: 1 }, 1000, 'linear');
             } else {
                 sm.set('features.' + Navigation.planetList[curPlanet]["Name"] + "." + i, false)
             }
         }
+    },
 
+    addInter: function (feature) {
+        feature = feature.split('.')
+        let planetBtns = eval(feature[0]).planetBtns;
+
+        let interBtn = planetBtns[feature[1]].css('opacity', 0)
+        this.inter.append(interBtn)
+        interBtn.animate({ opacity: 1 }, 1000, 'linear');
+
+    },
+
+    planetChanged: function() {
+        this.inter.animate({opacity: 0}, 1000, 'linear', function() {
+            Interaction.newInter();
+            Interaction.inter.animate({opacity: 1}, 1000, 'linear');
+        })
+    },
+
+    unlockFeature(feature, condition) {
+        if (condition && !sm.get('features.' + feature)) {
+            sm.set('features.' + feature, true);
+            this.addInter(feature)
+            return true;
+        } else return false;
     }
 }
 

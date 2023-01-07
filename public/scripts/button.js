@@ -1,6 +1,8 @@
 var Button = {
 	Button: function (options) {
 		if(!options.hasOwnProperty('hover')) options.hover = options.text
+		if(!options.hasOwnProperty('condition')) options.condition = () => true;
+		if(!options.hasOwnProperty('cost')) options.cost = {};
 		let buttonElement = $('<div>')
 			.attr({
 				id: options.id,
@@ -8,7 +10,7 @@ var Button = {
 			})
 			.addClass('interBtn noselect')
 			.click(function () {
-				if (!$(this).hasClass('disabled')) {
+				if (!$(this).hasClass('disabled') && $(this).data("condition")() && Button.useCost($(this).data("cost"))) {
 					$(this).addClass('disabled');
 					Button.startCooldown($(this));
 					$(this).data("handler")($(this));
@@ -16,16 +18,17 @@ var Button = {
                 Status.updateStatus(2)
 			})
 			.data("handler", options.click)
+			.data("condition", options.condition)
+			.data("cost", options.cost)
 			.data("originalTxt", options.text)
 			.data("hoverTxt", options.hover);
 		buttonElement.append($('<span>').text(options.text));
 
 		buttonElement.mouseenter(function () {
 			if ($(this).hasClass('disabled')) return;
-			$(this).animate({ 'opacity': '0' }, 200, 'linear', function () {
-				console.log()
+			$(this).animate({ 'opacity': '0' }, 150, 'linear', function () {
 				$(this)[0].childNodes[0].innerHTML = options.hover;
-				$(this).animate({ 'opacity': '1' }, 200, 'linear', function () {
+				$(this).animate({ 'opacity': '1' }, 150, 'linear', function () {
 					if (!$(this).is(':hover')) {
 						$(this)[0].childNodes[0].innerHTML = options.text
 					}
@@ -43,18 +46,6 @@ var Button = {
 
 		sm.set('cooldown.' + options.id, options.cooldown);
 
-		// if(options.cost) {
-		// 	var ttPos = options.ttPos ? options.ttPos : "bottom right";
-		// 	var costTooltip = $('<div>').addClass('tooltip ' + ttPos);
-		// 	for(var k in options.cost) {
-		// 		$("<div>").addClass('row_key').text(_(k)).appendTo(costTooltip);
-		// 		$("<div>").addClass('row_val').text(options.cost[k]).appendTo(costTooltip);
-		// 	}
-		// 	if(costTooltip.children().length > 0) {
-		// 		costTooltip.appendTo(el);
-		// 	}
-		// }
-
 		// if(options.width) {
 		// 	el.css('width', options.width);
 		// }
@@ -62,20 +53,35 @@ var Button = {
 		return buttonElement;
 	},
 
+	useCost: function(costs) {
+		if(costs == {}) return true;
+		for(let item in costs) {
+			if(sm.get('inv.'+item) < costs[item]) return false;
+		}
+		for(let item in costs) {
+			Inventory.addItem(item, costs[item]*-1);
+		}
+		return true;
+	},
+
 	startCooldown: function (btn) {
 		let time = sm.get('cooldown.' + $(btn)[0].id)
+
+		if(Game.godMode) {
+			time /= 3;
+		}
 		// console.log(time, $(btn),cooldownElement[0])
 		// if (Game.options.doubleTime) time /= 2;
 
 		$(btn)[0].childNodes[0].innerHTML = $(btn).data("originalTxt")
-		console.log($(btn)[0].childNodes[0])
+		// console.log($(btn)[0].childNodes[0])
 		$(btn).removeClass('interBtn');
 
 		let cooldownElement = $('<div>').addClass('cooldown')
 		// cooldownElement.innerHTML = ''
 		$(btn).append(cooldownElement)
 		cooldownElement.animate({width: '100%'}, time, 'linear', function () {
-			console.log(time)
+			// console.log(time)
 			Button.clearCooldown(btn);
 			cooldownElement.remove();
 			if ($(this).is(':hover')) {

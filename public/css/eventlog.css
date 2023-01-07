@@ -9,6 +9,7 @@
     overflow: hidden;
     border-radius: 2rem;
     outline: thick double hsl(272, 65%, 41%);
+    font-weight: 100;
 }
 
 .eventTxt {

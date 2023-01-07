@@ -13,6 +13,11 @@
   box-sizing: border-box;
   font-family: 'Dosis';
   color: #f0f8ff;
+  
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 html {

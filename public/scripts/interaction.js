@@ -44,7 +44,7 @@ var Interaction = {
         })
     },
 
-    unlockFeature(feature, condition) {
+    unlockFeature(feature, condition = true) {
         if (condition && !sm.get('features.' + feature)) {
             sm.set('features.' + feature, true);
             this.addInter(feature)

@@ -13,7 +13,7 @@ var Earth = {
                 text: "pickup stone",
                 click: Earth.pickupStone,
                 cooldown: 2000,
-                hover: "Cost 5 Steps",
+                hover: "Cost 3 Steps",
                 cost: {
                     'steps': 3
                 }
@@ -30,7 +30,7 @@ var Earth = {
             }),
             "kill": new Button.Button({
                 id: 'killBtn',
-                text: "KILL",
+                text: "kill",
                 click: Earth.takeStep,
                 cooldown: 10000,
                 cost: {
@@ -41,41 +41,60 @@ var Earth = {
         }
     },
     takeStep: function () {
-        sm.add('count.Earth.walk', 1);
+        sm.add('count.Earth.walk', 1); 
         switch (sm.get('count.Earth.walk')) {
             case 1:
-                EventLog.addEvent("You begin to start walking.");
+                EventLog.addEvent("take another step.");
                 break;
             case 2:
-                EventLog.addEvent("You continue to be curious to explore your surroundings and see what this world has to offer.")
+                EventLog.addEvent("keep going.");
                 break;
             case 3:
-                EventLog.addEvent("As you continue your journey, you come a small pile of stones.");
+                EventLog.addEvent("a stone appears.");
                 break;
         }
         Inventory.addItem('steps', 1);
-        Interaction.unlockFeature('Earth.stone', sm.get('inv.steps') >= 5)
+        Interaction.unlockFeature('Earth.stone', sm.get('inv.steps') >= 3)
     },
 
     pickupStone: function () {
         sm.add('count.Earth.stone', 1);
         switch (sm.get('count.Earth.stone')) {
             case 1:
-                EventLog.addEvent("A stone. A hard solid nonmetallic mineral matter. You begin to wonder about its capabilities.");
+                EventLog.addEvent("all stones have purpose.");
                 break;
             case 2:
-                EventLog.addEvent("These stones seem to hold some special purpose. You continue to gather more.")
+                EventLog.addEvent("that's another one.");
                 break;
             case 3:
-                EventLog.addEvent("You turn around and see your trail of steps. You look around for a place to use them.")
+                EventLog.addEvent("more. stones.")
                 break;
             case 3:
-                EventLog.addEvent("With your handful of stones, you discover a place to use them.")
+                EventLog.addEvent("time to put these stones to use.")
                 Interaction.unlockFeature('Earth.wood');
                 Interaction.unlockFeature('Earth.kill');
                 break;
         }
         Inventory.addItem('stone', 1);
+    },
+
+    gatherWood: function () {
+        sm.add('count.Earth.wood', 1)
+        switch (sm.get('count.Earth.wood')) {
+            default:
+                EventLog.addEvent("You gathered wood")
+        }
+        Inventory.addItem('wood', 1);
+    },
+
+    kill: function () {
+        sm.add('count.Earth.kill', 1)
+        switch (sm.get('count.Earth.kill')) {
+            default:
+                EventLog.addEvent("You killed an animal")
+        }
+        Inventory.addRandomItem(['bone'], [1], 1, 1);
+        Inventory.addRandomItem(['meat'], [1], 1, 3);
     }
 
 

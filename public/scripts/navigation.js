@@ -36,8 +36,8 @@ var Navigation = {
         sm.set('planets.curPlanet', -1);
         sm.set('planets.unlocked', -1);
         sm.unlockPlanet(true);
-        sm.unlockPlanet(false);
-        sm.unlockPlanet(false);
+        // sm.unlockPlanet(false);
+        // sm.unlockPlanet(false);
 
         $('#planet').prepend(this.nav)
     },

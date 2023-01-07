@@ -14,15 +14,14 @@ var EventLog = {
         this.addEvent("I DIED fgbhnjkjhgfv vbtcfyvgushbk jladmasjbadakjdjj asdjasbd jksabkjdsabjd bsakdbsadbkjsbnm", null)
 
 		//DEBUG
-		// let input = $('<input>').attr({
-		// 	id: 'inp'
-		// })
-		// input.prependTo('div#main')
-		// // <button id="btbt">CLICK</button>
-		// $('#btbt').click(function() {
-		// 	EventLog.addEvent($('#inp').val(), null)
+		let input = $('<input>').attr({
+			id: 'inp'
+		})
+		input.prependTo('div#main')
+		$('#btbt').click(function() {
+			EventLog.addEvent($('#inp').val(), null)
 			
-		// })
+		})
     },
     
 	addEvent: function(text, module) {

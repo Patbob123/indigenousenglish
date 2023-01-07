@@ -7,14 +7,14 @@ var Navigation = {
 		},
         {
 			Name: "Venus",
-			Size: "16", //rem,
+			Size: "14", //rem,
             Color1: "#fcb103",
             Color2: "#fc2c03",
             Color3: "#8f4500",
 		},
 		{
 			Name: "Mercury",
-			Size: "16",
+			Size: "8",
             Color1: "#000000",
             Color2: "#000000", 
             Color3: "#000000",//rem,
@@ -69,7 +69,7 @@ var Navigation = {
         sm.set('planets.curPlanet', newPlanetIndex);
         $('#nav' + Navigation.planetList[sm.get('planets.curPlanet')].Name).addClass('selectedPlanet')
 
-        Planet.createPlanet(0)
+        Planet.createPlanet(sm.get('planets.curPlanet'))
         // Planet.changePlanet
     }
 }

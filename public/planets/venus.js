@@ -4,10 +4,11 @@ var Venus = {
         this.earthBtns = {
             "walk": new Button.Button({
                 id: 'walkBtn',
-                text: _("take a step"),
-                click: Outside.gatherWood,
-                cooldown: 1000,
-                width: '80px'
+                name: 'Earth.walk',
+                text: "take a step",
+                btnClass: 'interBtn',
+                click: Earth.takeStep,
+                cooldown: 750
             }),
             "stone": new Button.Button({
                 id: 'stoneBtn',

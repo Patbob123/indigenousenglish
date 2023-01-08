@@ -12,21 +12,23 @@ var Button = {
 			})
 			.addClass(options.btnClass + ' noselect')
 			.click(function () {
-				if (!$(this).hasClass('disabled') && $(this).data("condition")() && Button.useCost($(this).data("cost"))) {
-					$(this).addClass('disabled');
+				if (!$(this).hasClass('disabled') && $(this).data("condition")()) {
+					if (Button.useCost($(this).data("cost"))) {
+						$(this).addClass('disabled');
 
-					console.log(sm.get('cooldown'),$(this),$(this)[0])
-					$(this).data("handler")($(this));
-					Status.move();
+						console.log(sm.get('cooldown'), $(this), $(this)[0])
+						$(this).data("handler")($(this));
+						Status.move();
 
-					if (sm.get('cooldown.' + $(this)[0].id) == -1) {
-						sm.set('count.' + $(this).data('name'), true)
-						console.log(sm.get('count'))
-						$(this).remove()
-						return
+						if (sm.get('cooldown.' + $(this)[0].id) == -1) {
+							sm.set('count.' + $(this).data('name'), true)
+							console.log(sm.get('count'))
+							$(this).remove()
+							return
+						}
+
+						Button.startCooldown($(this));
 					}
-
-					Button.startCooldown($(this));
 				} else if (Button.useCost($(this).data("cost"))) {
 					$(this).data("reject")($(this));
 				}
@@ -85,19 +87,19 @@ var Button = {
 	startCooldown: function (btn) {
 		let time = sm.get('cooldown.' + $(btn)[0].id)
 
-        if (sm.get('char.stats.heat') < 25) {
-            //dies to heat
+		if (sm.get('char.stats.heat') < 25) {
+			//dies to heat
 			EventLog.addEvent("its getting soooo cold, it must be a lot harder to move.")
-			time*=1.2;
-        }
+			time *= 1.2;
+		}
 
-        if (sm.get('char.stats.heat') > 80) {
-            //dies to heat
+		if (sm.get('char.stats.heat') > 80) {
+			//dies to heat
 			EventLog.addEvent("the intense heat must be making it a lot harder to move.")
-			time*=1.2;
-        }
-        if (sm.get('char.stats.oxygen') == 0) {
-            //dies to o2
+			time *= 1.2;
+		}
+		if (sm.get('char.stats.oxygen') == 0) {
+			//dies to o2
 			EventLog.addEvent('when oxygen runs out the body shuts down... until you find a place to inhale once more.')
 			return;
 		}

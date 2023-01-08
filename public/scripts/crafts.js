@@ -1,0 +1,53 @@
+var Crafts = {
+    init: function () {
+        this.craft = $('<div>').attr({
+            id: 'crafts'
+        });
+
+        $('#menu').append(this.craft)
+        Earth.init();
+        sm.set('crafts.Earth.spear', true)
+    },
+
+    newCraft: function () {
+
+        let curPlanet = sm.get('planets.curPlanet') == -1 ? 0 : sm.get('planets.curPlanet')
+        let planetBtns = eval(Navigation.planetList[curPlanet]["Name"]).planetBtns;
+
+        for (let i in planetBtns) {
+            if (sm.get('crafts.' + Navigation.planetList[curPlanet]["Name"] + "." + i) == true) {
+                let craftBtn = planetBtns[i].css('opacity', 0)
+                this.craft.append(craftBtn)
+                craftBtn.animate({ opacity: 1 }, 1000, 'linear');
+            } else {
+                sm.set('crafts.' + Navigation.planetList[curPlanet]["Name"] + "." + i, false)
+            }
+        }
+    },
+
+    addCraft: function (craft) {
+        craft = craft.split('.')
+        let planetBtns = eval(craft[0]).planetBtns;
+
+        let craftBtn = planetBtns[craft[1]].css('opacity', 0)
+        this.craft.append(craftBtn)
+        craftBtn.animate({ opacity: 1 }, 1000, 'linear');
+
+    },
+
+    planetChanged: function() {
+        this.craft.animate({opacity: 0}, 1000, 'linear', function() {
+            Crafts.newCraft();
+            Crafts.craft.animate({opacity: 1}, 1000, 'linear');
+        })
+    },
+
+    unlockCraft(craft, condition = true) {
+        if (condition && !sm.get('crafts.' + craft)) {
+            sm.set('crafts.' + craft, true);
+            this.addCraft(craft)
+            return true;
+        } else return false;
+    }
+}
+

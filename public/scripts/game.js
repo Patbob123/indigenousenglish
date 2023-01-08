@@ -9,9 +9,11 @@ var Game = window.Engine = {
         EventLog.init();
         Status.init();
         Inventory.init();
+        Equipment.init();
         Planet.init();
         Navigation.init();
         Interaction.init();
+        Crafts.init();
     }
 }
 

@@ -39,6 +39,17 @@ var Earth = {
                     'stone': 2
                 }
             }),
+            "spear": new Button.Button({
+                id: 'spearBtn',
+                text: "craft spear",
+                click: Earth.craftSpear,
+                cooldown: -1,
+                hover: "Cost 10 wood, 3 bones",
+                cost: {
+                    'wood': 10,
+                    'bone': 3,
+                },
+            }),
         }
     },
     takeStep: function () {
@@ -87,7 +98,7 @@ var Earth = {
         sm.add('count.Earth.wood', 1)
         switch (sm.get('count.Earth.wood')) {
             default:
-                EventLog.addEvent("You gathered wood")
+                EventLog.addEvent("gathered wood.")
         }
         Inventory.addItem('wood', 1);
     },
@@ -95,12 +106,23 @@ var Earth = {
     kill: function () {
         sm.add('count.Earth.kill', 1)
         switch (sm.get('count.Earth.kill')) {
+            case 1:
+                EventLog.addEvent("that's a way to get some meat.");
             default:
-                EventLog.addEvent("You killed an animal")
+                EventLog.addEvent("sacrifices are neccessary.")
         }
         Inventory.addRandomItem(['bone'], [1], 1, 1);
         Inventory.addRandomItem(['meat'], [1], 1, 3);
-    }
+        if(sm.get("equipment.spear")==true){
+            Inventory.addRandomItem(['bone'], [1], 1, 1);
+            Inventory.addRandomItem(['leather'], [1], 1, 1);
+        }
+    },
+
+    craftSpear: function(){
+        EventLog.addEvent("not the best weapon, but it's good a stabbing.");
+        Equipment.addEquipment('spear');
+    },
 
 
 }

@@ -56,7 +56,7 @@ var Earth = {
         }
     },
     takeStep: function () {
-        sm.add('count.Earth.walk', 1); 
+        sm.add('count.Earth.walk', 1);
         switch (sm.get('count.Earth.walk')) {
             case 1:
                 EventLog.addEvent("take another step.");
@@ -102,9 +102,13 @@ var Earth = {
         switch (sm.get('count.Earth.wood')) {
             default:
                 EventLog.addEvent("gathered wood.")
+
         }
-        Tabs.unlockTabs()
-        Crafts.unlockCraft('Earth.stone', sm.get('inv.wood') >= 2)
+        if (sm.get('inv.wood') >= 2) {
+            Tabs.unlockTabs();
+        }
+
+        Crafts.unlockCraft('spear', sm.get('inv.wood') >= 2)
         Inventory.addItem('wood', 1);
     },
 
@@ -118,13 +122,13 @@ var Earth = {
         }
         Inventory.addRandomItem(['bone'], [1], 1, 1);
         Inventory.addRandomItem(['meat'], [1], 1, 3);
-        if(sm.get("equipment.spear")==true){
+        if (sm.get("equipment.spear") == true) {
             Inventory.addRandomItem(['bone'], [1], 1, 1);
             Inventory.addRandomItem(['leather'], [1], 1, 1);
         }
     },
 
-    craftSpear: function(){
+    craftSpear: function () {
         EventLog.addEvent("not the best weapon, but it's good a stabbing.");
         Equipment.addEquipment('spear');
     },

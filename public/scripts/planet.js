@@ -11,7 +11,12 @@ var Planet = {
 		this.planetPanel = $('<div>').attr({
 			id: 'planetPanel'
 		});
+		this.stores = $('<div>').attr({
+			id: 'stores'
+		});
+		this.stores.prependTo(this.menu);
 		this.planetPanel.prependTo(this.menu);
+
 		this.planet.append(this.menu);
 		this.planet.prependTo('div#main')
 		this.createPlanet(0)

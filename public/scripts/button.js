@@ -16,10 +16,11 @@ var Button = {
 					$(this).addClass('disabled');
 					Button.startCooldown($(this));
 					$(this).data("handler")($(this));
+
+					Status.move();
 				} else if(Button.useCost($(this).data("cost"))) {
 					$(this).data("reject")($(this));
 				}
-				Status.updateStatus("heat", 30)
 			})
 			.data("handler", options.click)
 			.data("reject", options.reject)

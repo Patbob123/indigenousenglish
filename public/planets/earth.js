@@ -104,7 +104,7 @@ var Earth = {
                 EventLog.addEvent("gathered wood.")
 
         }
-        if (sm.get('inv.wood') >= 2) {
+        if (!sm.get('features.tabs') && sm.get('inv.wood') >= 2 ) {
             Tabs.unlockTabs();
         }
 

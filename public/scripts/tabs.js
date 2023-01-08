@@ -6,10 +6,13 @@ var Tabs = {
         });
 
         $('#stores').append(this.tabs)
-        this.unlockTabs()
+        sm.set('features.tabs', false)
+        // this.unlockTabs()
     },
 
     unlockTabs: function() { 
+        sm.set('features.tabs', true);
+
         $('<div>').addClass('tabBtn selectedTab').text('Inventory').appendTo(this.tabs).click(function() {
             Tabs.changeTab($(this), Inventory.inv)
         });
@@ -18,12 +21,10 @@ var Tabs = {
         $('<div>').addClass('tabBtn').text('Equip').appendTo(this.tabs).click(function() {
             Tabs.changeTab($(this), Equipment.equip)
         });
-        sm.set('features.equipment', true);
 
         $('<div>').addClass('tabBtn').text('Craft').appendTo(this.tabs).click(function() {
             Tabs.changeTab($(this), Crafts.craft)
         });
-        sm.set('features.craft', true);
     },
 
     changeTab: function(tab, newPanel) {

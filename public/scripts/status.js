@@ -1,6 +1,6 @@
 var Status = {
     statusList: {
-        "heat":{
+        "heat": {
             Name: "heat",
             Start: 100,
             Size: 50,
@@ -8,7 +8,7 @@ var Status = {
             Color2: "#fc2c03",
             Color3: "#8f4500",
         },
-        "oxygen":{
+        "oxygen": {
             Name: "oxygen",
             Start: 100,
             Size: 50,
@@ -16,7 +16,7 @@ var Status = {
             Color2: "#fc2c03",
             Color3: "#8f4500",
         },
-        "hunger":{
+        "hunger": {
             Name: "hunger",
             Start: 100,
             Size: 50,
@@ -26,16 +26,17 @@ var Status = {
         },
     },
     init: function () {
-        this.status = $('<div>').attr({ 
+        this.status = $('<div>').attr({
             id: 'status'
         });
         this.status.appendTo('div#wrapper')
 
-        for(let i in this.statusList){
+        for (let i in this.statusList) {
             this.createStatus(i)
         }
 
-
+        Status.updateStatus("hunger", 50);
+        Status.updateStatus("heat", 50);
     },
     createStatus: function (index) {
         let name = Status.statusList[index]["Name"];
@@ -43,8 +44,8 @@ var Status = {
         let statusBar = $('<div>').addClass('progressbar').attr({
             style: "--color1:" + Status.statusList[index]["Color1"] +
                 ";--color2:" + Status.statusList[index]["Color2"] +
-                ";--color3:" + Status.statusList[index]["Color3"]+
-                ";--size:" + Status.statusList[index]["Size"]+"vh",
+                ";--color3:" + Status.statusList[index]["Color3"] +
+                ";--size:" + Status.statusList[index]["Size"] + "vh",
             id: name,
         });
         this.status.prepend(statusBar)
@@ -52,27 +53,46 @@ var Status = {
         <circle id="circle${name}" cx="80" cy="80" r="70" class="circle progressbar__svg-circle shadow"> </circle>
         </svg>`
         console.log(440 + (440 * Status.statusList[index]["Start"]) / 100);
-        $('#circle' +name).attr({
-                style: "--percent:0;" +
-                    "--newpercent:" + (440 + (440 * Status.statusList[index]["Start"])/100),
-            });
-            sm.set("char.stats."+index, Status.statusList[index]["Start"])
+        $('#circle' + name).attr({
+            style: "--percent:0;" +
+                "--newpercent:" + (440 + (440 * Status.statusList[index]["Start"]) / 100),
+        });
+        sm.set("char.stats." + index, Status.statusList[index]["Start"])
         let text = $('<div>').addClass('progressbar__text shadow').text(name);
-        statusBar.append(text)  
+        statusBar.append(text)
 
 
     },
     updateStatus: function (stat, amount) {
-        console.log(sm.get("char.stats."+stat))
+        if (amount < 0) amount = 0;
+        console.log(sm.get("char.stats." + stat))
         let name = Status.statusList[stat]["Name"]
         $('#circle' + name).attr("class", "progressbar__svg-circle shadow");
         $('#circle' + name).attr({
-            style: "--percent:" + (440 + (440 * sm.get("char.stats."+stat)) / 100) +
-            ";--newpercent:" + (440 + (440 * amount) / 100),
+            style: "--percent:" + (440 + (440 * sm.get("char.stats." + stat)) / 100) +
+                ";--newpercent:" + (440 + (440 * amount) / 100),
         })
-        setTimeout(function(){
+        setTimeout(function () {
             $('#circle' + name).attr("class", "progressbar__svg-circle shadow circle");
-        },1)
-        sm.set("char.stats."+stat, amount)
+        }, 1)
+        sm.set("char.stats." + stat, amount)
+    },
+
+    move: function () {
+        sm.add('char.moves', 1);
+        if (sm.get('char.moves') == 10) {
+            sm.set('char.moves', 0);
+            Status.updateStatus("hunger", sm.get('char.stats.hunger') - 5);
+        }
+        if (sm.get('char.stats.hunger') < 25) {
+            Status.updateStatus("heat", sm.get('char.stats.heat') - 10);
+        }
+        if (sm.get('char.stats.heat') == 0) {
+            //dies to heat
+        }
+        if (sm.get('char.stats.oxygen') == 0) {
+            //dies to o2
+        }
     }
+
 }

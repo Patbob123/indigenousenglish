@@ -26,8 +26,9 @@ var Tabs = {
 
         $('<div>').addClass('tabBtn').text('Craft').appendTo(this.tabs).click(function () {
             let curPlanet = sm.get('planets.curPlanet') == -1 ? 0 : sm.get('planets.curPlanet')
-            let craftPlanetBtns = eval(Navigation.planetList[curPlanet]["Name"]).craftPlanetBtns;
-            Button.addListeners(craftPlanetBtns)
+            eval(Navigation.planetList[curPlanet]["Name"] + '.createCraftButtons()');
+            Crafts.newCraft();
+
             Tabs.changeTab($(this), Crafts.craft)
         }).animate({ opacity: 1 }, 1000, 'linear');
     },

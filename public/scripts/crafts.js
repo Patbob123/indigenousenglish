@@ -6,11 +6,10 @@ var Crafts = {
     },
 
     newCraft: function () {
+        this.craft.empty();
 
         let curPlanet = sm.get('planets.curPlanet') == -1 ? 0 : sm.get('planets.curPlanet')
         let craftPlanetBtns = eval(Navigation.planetList[curPlanet]["Name"]).craftPlanetBtns;
-
-        Button.addListeners(craftPlanetBtns)
 
         for (let i in craftPlanetBtns) {
             if(sm.get('crafts.' + Navigation.planetList[curPlanet]["Name"] + "." + i + 'Btn') == true) continue;
@@ -28,8 +27,6 @@ var Crafts = {
         craft = craft.split('.')
         console.log(craft)
         let craftPlanetBtns = eval(craft[0]).craftPlanetBtns;
-
-        Button.addListeners([craftPlanetBtns[craft[1]]])
 
         let craftBtn = craftPlanetBtns[craft[1]].css('opacity', 0)
         this.craft.append(craftBtn)

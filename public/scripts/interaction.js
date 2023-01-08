@@ -12,11 +12,10 @@ var Interaction = {
     },
 
     newInter: function () {
+        this.inter.empty();
 
         let curPlanet = sm.get('planets.curPlanet') == -1 ? 0 : sm.get('planets.curPlanet')
         let planetBtns = eval(Navigation.planetList[curPlanet]["Name"]).planetBtns;
-
-        Button.addListeners(planetBtns)
 
         for (let i in planetBtns) {
             if (sm.get('features.' + Navigation.planetList[curPlanet]["Name"] + "." + i) == true) {
@@ -32,8 +31,6 @@ var Interaction = {
     addInter: function (feature) {
         feature = feature.split('.')
         let planetBtns = eval(feature[0]).planetBtns;
-
-        Button.addListeners([planetBtns[feature[1]]])
 
         let interBtn = planetBtns[feature[1]].css('opacity', 0)
         this.inter.append(interBtn)

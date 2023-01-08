@@ -60,8 +60,10 @@ var Earth = {
                 click: Earth.mine,
                 cooldown: 10000,
             }),
-            
         }
+        this.createCraftButtons();
+    },
+    createCraftButtons: function () {
         this.craftPlanetBtns = {
             "spear": new Button.Button({
                 id: 'spearBtn',
@@ -104,13 +106,28 @@ var Earth = {
             "spaceship": new Button.Button({
                 id: 'spaceBtn',
                 name: 'Earth.spaceship',
-                text: "craft shoes",
+                text: "repair spaceship",
                 btnClass: 'craftBtn',
-                click: Earth.craftShoes,
+                click: Earth.repairSpaceship,
                 cooldown: -1,
-                hover: "Cost 10 leather",
+                hover: "Cost 30 Iron, 10 Coal, 5 Sulfur",
                 cost: {
-                    'leather': 10,
+                    'iron': 30,
+                    'coal': 10,
+                    'sulfur': 5,
+                },
+            }),
+            "spacehelmet": new Button.Button({
+                id: 'spaceBtn',
+                name: 'Earth.spacehelmet',
+                text: "repair spacehelmet",
+                btnClass: 'craftBtn',
+                click: Earth.craftSpacehelmet,
+                cooldown: -1,
+                hover: "Cost 1 Diamond, 10 Iron",
+                cost: {
+                    'diamond': 1,
+                    'iron': 10,
                 },
             }),
         }
@@ -130,7 +147,7 @@ var Earth = {
             default:
                 EventLog.addEvent("walking.")
         }
-        Inventory.addItem('steps', sm.get("equipment.shoes")?2:1);
+        Inventory.addItem('steps', sm.get("equipment.shoes")?2:999);
         Interaction.unlockFeature('Earth.stone', sm.get('inv.steps') >= 3)
     },
 
@@ -207,6 +224,11 @@ var Earth = {
         switch (sm.get('count.Earth.mine')) {
             case 1:
                 EventLog.addEvent("shiny.");
+            break;
+            case 20:
+                EventLog.addEvent("something crashed nearby.");
+                Crafts.unlockCraft('Earth.spaceship')
+            break;
             default:
                 EventLog.addEvent("a new haul of ores.")
         }
@@ -214,7 +236,11 @@ var Earth = {
             Inventory.addRandomItem(['iron'], [1], [1], [4]);
             Inventory.addRandomItem(['coal'], [1], [1], [2], 80);
             Inventory.addRandomItem(['sulfur'], [1], [1], [2], 30);
-            Inventory.addRandomItem(['diamond'], [1], [1], [1], 2);
+            Inventory.addRandomItem(['diamond'], [1], [1], [1], 1);
+        }
+        if(sm.get('inv.diamond')==1){
+            EventLog.addEvent("a diamond can generate oxygen.");
+            Crafts.unlockCraft('Earth.spacehelmet')
         }
     },
 
@@ -222,5 +248,17 @@ var Earth = {
         EventLog.addEvent("shoes protect the feet.");
         Equipment.addEquipment('shoes');
     },
+    
+
+    repairSpaceship: function(){
+        EventLog.addEvent("the abandoned ship is no longer abandoned.");
+        Equipment.addEquipment('spaceship');
+    },
+
+    craftSpacehelmet: function(){
+        EventLog.addEvent("the abandoned ship is no longer abandoned.");
+        Equipment.addEquipment('spacehelmet');
+    },
+    
 
 }

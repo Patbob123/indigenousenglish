@@ -12,14 +12,7 @@ var EventLog = {
 		this.addEvent(`the grass is lush; it's a beautiful day outside...somewhere`)
         this.addEvent(`start walking.`)
 		//DEBUG
-		let input = $('<input>').attr({
-			id: 'inp'
-		})
-		input.prependTo('div#main')
-		$('#btbt').click(function () {
-			EventLog.addEvent($('#inp').val(), null)
 
-		})
 	},
 
 	addEvent: function (text, module) {

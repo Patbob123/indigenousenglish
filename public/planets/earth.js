@@ -285,7 +285,7 @@ var Earth = {
     repairSpaceship: function(){
         EventLog.addEvent("the abandoned ship is no longer abandoned.");
         Equipment.addEquipment('spaceship');
-        sm.unlockPlanet(true);
+        sm.unlockPlanet(false);
     },
 
     craftSpacehelmet: function(){

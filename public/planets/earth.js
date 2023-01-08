@@ -285,6 +285,7 @@ var Earth = {
     repairSpaceship: function(){
         EventLog.addEvent("the abandoned ship is no longer abandoned.");
         Equipment.addEquipment('spaceship');
+        sm.unlockPlanet(true);
     },
 
     craftSpacehelmet: function(){
@@ -299,7 +300,7 @@ var Earth = {
     },
     eatFood: function(){
         EventLog.addEvent("refreshing.");
-        Status.updateStatus("heat", sm.get('char.stats.heat')+20)
-        Status.updateStatus("hunger", sm.get('char.stats.hunger')+20)
+        sm.set('char.stats.heat', sm.get('char.stats.heat')+20)
+        sm.set('char.stats.hunger', sm.get('char.stats.hunger')+20)
     }
 }

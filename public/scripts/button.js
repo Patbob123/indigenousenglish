@@ -33,21 +33,21 @@ var Button = {
 			.data("hoverTxt", options.hover);
 		buttonElement.append($('<span>').text(options.text));
 
-		buttonElement.mouseenter(function () {
-            console.log($(this)[0].childNodes[0])
-			if ($(this).hasClass('disabled')) return;
-			$(this).animate({ 'opacity': '0' }, 150, 'linear', function () {
-				$(this)[0].childNodes[0].innerHTML = $(this).data("hover");
-				$(this).animate({ 'opacity': '1' }, 150, 'linear', function () {
-					if (!$(this).is(':hover')) {
-						$(this)[0].childNodes[0].innerHTML = $(this).data("text");
-					}
-				});
-			});
-		}).mouseleave(function () {
-			if ($(this).hasClass('disabled')) return;
-			$(this)[0].childNodes[0].innerHTML = options.text
-		});
+		// buttonElement.mouseenter(function () {
+        //     console.log($(this)[0].childNodes[0])
+		// 	if ($(this).hasClass('disabled')) return;
+		// 	$(this).animate({ 'opacity': '0' }, 150, 'linear', function () {
+		// 		$(this)[0].childNodes[0].innerHTML = $(this).data("hoverTxt");
+		// 		$(this).animate({ 'opacity': '1' }, 150, 'linear', function () {
+		// 			if (!$(this).is(':hover')) {
+		// 				$(this)[0].childNodes[0].innerHTML = $(this).data("originalTxt");
+		// 			}
+		// 		});
+		// 	});
+		// }).mouseleave(function () {
+		// 	if ($(this).hasClass('disabled')) return;
+		// 	$(this)[0].childNodes[0].innerHTML = $(this).data("originalTxt");
+		// });
 		// for(let i = 0; i< 4; i++) {
 		// 	$('<span>').prependTo(buttonElement)
 		// }
@@ -62,6 +62,28 @@ var Button = {
 
 		return buttonElement;
 	},
+
+	addListeners: function (buttons) {
+		console.log(buttons)
+		for (let button in buttons) {
+			buttons[button].mouseenter(function () {
+				console.log(buttons[button], $(buttons[button]).data())
+				if ($(this).hasClass('disabled')) return;
+				$(this).animate({ 'opacity': '0' }, 150, 'linear', function () {
+					$(this)[0].childNodes[0].innerHTML = $(this).data("hoverTxt");
+					$(this).animate({ 'opacity': '1' }, 150, 'linear', function () {
+						if (!$(this).is(':hover')) {
+							$(this)[0].childNodes[0].innerHTML = $(this).data("originalTxt");
+						}
+					});
+				});
+			}).mouseleave(function () {
+				if ($(this).hasClass('disabled')) return;
+				$(this)[0].childNodes[0].innerHTML = $(this).data("originalTxt");
+			});
+		}
+	},
+
 
 	useCost: function (costs) {
 		if (costs == {}) return true;

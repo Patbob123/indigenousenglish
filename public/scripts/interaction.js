@@ -16,6 +16,8 @@ var Interaction = {
         let curPlanet = sm.get('planets.curPlanet') == -1 ? 0 : sm.get('planets.curPlanet')
         let planetBtns = eval(Navigation.planetList[curPlanet]["Name"]).planetBtns;
 
+        Button.addListeners(planetBtns)
+
         for (let i in planetBtns) {
             if (sm.get('features.' + Navigation.planetList[curPlanet]["Name"] + "." + i) == true) {
                 let interBtn = planetBtns[i].css('opacity', 0)
@@ -31,6 +33,8 @@ var Interaction = {
         feature = feature.split('.')
         let planetBtns = eval(feature[0]).planetBtns;
 
+        Button.addListeners([planetBtns[feature[1]]])
+
         let interBtn = planetBtns[feature[1]].css('opacity', 0)
         this.inter.append(interBtn)
         interBtn.animate({ opacity: 1 }, 1000, 'linear');
@@ -42,6 +46,9 @@ var Interaction = {
             Interaction.newInter();
             Interaction.inter.animate({opacity: 1}, 1000, 'linear');
         })
+        if(sm.get('planets.curPlanet') == 0) {
+            Status.updateStatus("oxygen", 100);
+        }
     },
 
     unlockFeature(feature, condition = true) {

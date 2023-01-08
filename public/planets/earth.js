@@ -24,7 +24,7 @@ var Earth = {
                 cooldown: 2000,
                 hover: "Cost 3 Steps",
                 cost: {
-                    'steps': 3
+                    'steps': 2
                 }
             }),
             "wood": new Button.Button({
@@ -36,7 +36,7 @@ var Earth = {
                 cooldown: 5000,
                 hover: "Cost 4 Steps",
                 cost: {
-                    'steps': 4,
+                    'steps': 2,
                 },
             }),
             "kill": new Button.Button({
@@ -46,7 +46,7 @@ var Earth = {
                 btnClass: 'interBtn',
                 click: Earth.kill,
                 cooldown: 10000,
-                hover: "Cost 6 Steps, 2 Stones",
+                hover: "Cost 3 Steps, 2 Stones",
                 cost: {
                     'steps': 6,
                     'stone': 2
@@ -60,6 +60,20 @@ var Earth = {
                 click: Earth.mine,
                 cooldown: 10000,
             }),
+            "cookmeat": new Button.Button({
+                id: 'mineBtn',
+                name: 'Earth.cookmeat',
+                text: "cook meat",
+                btnClass: 'interBtn',
+                click: Earth.cookMeat,
+                cooldown: 10000,
+                hover: "Cost 5 Meat, 1 Coal",
+                cost: {
+                    'meat': 5,
+                    'coal': 1,
+                }
+            }),
+            
         }
         this.createCraftButtons();
     },
@@ -120,7 +134,7 @@ var Earth = {
             "spacehelmet": new Button.Button({
                 id: 'spaceBtn',
                 name: 'Earth.spacehelmet',
-                text: "repair spacehelmet",
+                text: "craft spacehelmet",
                 btnClass: 'craftBtn',
                 click: Earth.craftSpacehelmet,
                 cooldown: -1,
@@ -236,9 +250,13 @@ var Earth = {
         }
         if (sm.get("equipment.pickaxe") == true) {
             Inventory.addRandomItem(['iron'], [1], [1], [4]);
-            Inventory.addRandomItem(['coal'], [1], [1], [2], 80);
+            Inventory.addRandomItem(['coal'], [1], [1], [0], 80);
             Inventory.addRandomItem(['sulfur'], [1], [1], [2], 30);
-            Inventory.addRandomItem(['diamond'], [1], [1], [1], 1);
+            Inventory.addRandomItem(['diamond'], [1], [1], [0], 2);
+        }
+        if(sm.get('inv.coal')==1){
+            EventLog.addEvent("coal generates heat.");
+            Interaction.unlockFeature('Earth.cookmeat')
         }
         if(sm.get('inv.diamond')==1){
             EventLog.addEvent("a diamond can generate oxygen.");
@@ -258,9 +276,12 @@ var Earth = {
     },
 
     craftSpacehelmet: function(){
-        EventLog.addEvent("the abandoned ship is no longer abandoned.");
+        EventLog.addEvent("oxygen depletes slower.");
         Equipment.addEquipment('spacehelmet');
     },
     
-
+    cookMeat: function(){
+        EventLog.addEvent("the aroma of meat is mouth watering.");
+        Inventory.addItem('cooked meat', 5);
+    },
 }

@@ -13,6 +13,7 @@ var Button = {
 			.addClass(options.btnClass + ' noselect')
 			.click(function () {
 				if (!$(this).hasClass('disabled') && $(this).data("condition")()) {
+					console.log($(this).hasClass('disabled'))
 					if (Button.useCost($(this).data("cost"))) {
 						$(this).addClass('disabled');
 
@@ -29,9 +30,10 @@ var Button = {
 
 						Button.startCooldown($(this));
 					}
-				} else if (Button.useCost($(this).data("cost"))) {
-					$(this).data("reject")($(this));
-				}
+				} 
+				// else if (Button.useCost($(this).data("cost"))) {
+				// 	$(this).data("reject")($(this));
+				// }
 			})
 			.data("class", options.btnClass)
 			.data("name", options.name)
@@ -78,6 +80,7 @@ var Button = {
 		for (let item in costs) {
 			if (sm.get('inv.' + item) < costs[item]) return false;
 		}
+		console.log('SUBBING')
 		for (let item in costs) {
 			Inventory.addItem(item, costs[item] * -1);
 		}

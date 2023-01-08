@@ -130,7 +130,7 @@ var Earth = {
                 },
             }),
             "spaceship": new Button.Button({
-                id: 'spaceBtn',
+                id: 'spaceshipBtn',
                 name: 'Earth.spaceship',
                 text: "repair spaceship",
                 btnClass: 'craftBtn',
@@ -144,7 +144,7 @@ var Earth = {
                 },
             }),
             "spacehelmet": new Button.Button({
-                id: 'spaceBtn',
+                id: 'spacehelmetBtn',
                 name: 'Earth.spacehelmet',
                 text: "craft spacehelmet",
                 btnClass: 'craftBtn',

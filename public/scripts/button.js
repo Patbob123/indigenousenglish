@@ -13,8 +13,9 @@ var Button = {
 			.addClass(options.btnClass + ' noselect')
 			.click(function () {
 				if (!$(this).hasClass('disabled') && $(this).data("condition")()) {
-					console.log($(this).hasClass('disabled'))
-					if (Button.useCost($(this).data("cost"))) {
+					let x = Button.useCost($(this).data("cost"))
+					console.log(x)
+					if (x) {
 						$(this).addClass('disabled');
 
 						console.log(sm.get('cooldown'), $(this), $(this)[0])
@@ -78,6 +79,7 @@ var Button = {
 	useCost: function (costs) {
 		if (costs == {}) return true;
 		for (let item in costs) {
+			console.log(sm.get('inv.' + item), costs[item])
 			if (sm.get('inv.' + item) < costs[item]) return false;
 		}
 		console.log('SUBBING')

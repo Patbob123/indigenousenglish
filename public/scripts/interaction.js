@@ -5,8 +5,6 @@ var Interaction = {
         });
 
         $('#stores').append(this.inter)
-        Earth.init();
-        Venus.init();
         sm.set('features.Earth.walk', true)
 
         // this.newInter()

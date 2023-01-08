@@ -61,6 +61,8 @@ var Navigation = {
 		navBtn.animate({opacity: 1}, 1000, 'linear');
         this.nav.append(navBtn)
 
+        eval(this.planetList[planetIndex].Name).init();
+
 		if(goto) Navigation.changePlanet(planetIndex)
     },
 

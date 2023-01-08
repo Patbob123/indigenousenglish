@@ -114,7 +114,7 @@ var Earth = {
                 hover: "Cost 10 wood, 10 stones",
                 cost: {
                     'wood': 10,
-                    'bone': 3,
+                    'stone': 10,
                 },
             }),
             "shoes": new Button.Button({

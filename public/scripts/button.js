@@ -12,7 +12,8 @@ var Button = {
 			})
 			.addClass(options.btnClass + ' noselect')
 			.click(function () {
-				if (!$(this).hasClass('disabled') && $(this).data("condition")() && Button.useCost($(this).data("cost"))) {
+				if (!$(this).hasClass('disabled') && $(this).data("condition")()) {
+                    if(Button.useCost($(this).data("cost"))){
 					$(this).addClass('disabled');
 
 					console.log(sm.get('cooldown'),$(this),$(this)[0])
@@ -27,6 +28,7 @@ var Button = {
 					}
 
 					Button.startCooldown($(this));
+                }
 				} else if (Button.useCost($(this).data("cost"))) {
 					$(this).data("reject")($(this));
 				}

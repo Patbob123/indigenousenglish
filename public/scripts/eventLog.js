@@ -12,6 +12,10 @@ var EventLog = {
 		this.addEvent(`the grass is lush; it's a beautiful day outside...somewhere`)
         this.addEvent(`start walking.`)
 		//DEBUG
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0872d92fedaf5bec1b17bc2c85d260b618bab45c
 	},
 
 	addEvent: function (text, module) {

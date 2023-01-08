@@ -33,13 +33,13 @@ var Navigation = {
             id: 'navigation'
         });
 
-        sm.set('planets.curPlanet', 0);
-        sm.set('planets.unlocked', 0);
+        sm.set('planets.curPlanet', -1);
+        sm.set('planets.unlocked', -1);
         
-        Planet.createPlanet(sm.get('planets.curPlanet'))
-        Interaction.planetChanged();
+        // Planet.createPlanet(sm.get('planets.curPlanet'))
+        // Interaction.planetChanged();
 
-        // sm.unlockPlanet(true);
+        sm.unlockPlanet(true);
         // sm.unlockPlanet(false);
         // sm.unlockPlanet(false);
 

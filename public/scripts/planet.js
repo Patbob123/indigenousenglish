@@ -31,7 +31,7 @@ var Planet = {
 		for (let i = 0; i < 5; i++) {
 			sides.append($('<span>').attr({
 				style: "--i:" + i + ";"+
-				"background-image:url(public/images/"+Navigation.planetList[index]["Name"]+".png"
+				"background-image:url(../public/images/"+Navigation.planetList[index]["Name"]+".png"
 					// "background:" + Navigation.planetList[index]["Background"] + ";"
 			}))
 		}

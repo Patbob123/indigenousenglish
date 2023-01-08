@@ -1,6 +1,11 @@
 var Earth = {
     earthBtns: {},
     init: function () {
+        sm.set("planets.Earth.hunger", 5)
+        sm.set("planets.Earth.naturalheat", 0)
+        sm.set("planets.Earth.heat", 5)
+        sm.set("planets.Earth.oxygen", -100)
+
         this.planetBtns = {
             "walk": new Button.Button({
                 id: 'walkBtn',
@@ -47,6 +52,14 @@ var Earth = {
                     'stone': 2
                 }
             }),
+            "mine": new Button.Button({
+                id: 'mineBtn',
+                name: 'Earth.mine',
+                text: "mine",
+                btnClass: 'interBtn',
+                click: Earth.mine,
+                cooldown: 10000,
+            }),
             
         }
         this.craftPlanetBtns = {
@@ -76,6 +89,30 @@ var Earth = {
                     'bone': 3,
                 },
             }),
+            "shoes": new Button.Button({
+                id: 'shoesBtn',
+                name: 'Earth.shoes',
+                text: "craft shoes",
+                btnClass: 'craftBtn',
+                click: Earth.craftShoes,
+                cooldown: -1,
+                hover: "Cost 10 leather",
+                cost: {
+                    'leather': 10,
+                },
+            }),
+            "spaceship": new Button.Button({
+                id: 'spaceBtn',
+                name: 'Earth.spaceship',
+                text: "craft shoes",
+                btnClass: 'craftBtn',
+                click: Earth.craftShoes,
+                cooldown: -1,
+                hover: "Cost 10 leather",
+                cost: {
+                    'leather': 10,
+                },
+            }),
         }
     },
     takeStep: function () {
@@ -93,7 +130,7 @@ var Earth = {
             default:
                 EventLog.addEvent("walking.")
         }
-        Inventory.addItem('steps', 1);
+        Inventory.addItem('steps', sm.get("equipment.shoes")?2:1);
         Interaction.unlockFeature('Earth.stone', sm.get('inv.steps') >= 3)
     },
 
@@ -145,23 +182,45 @@ var Earth = {
             default:
                 EventLog.addEvent("sacrifices are neccessary.")
         }
-        Inventory.addRandomItem(['bone'], [1], 1, 1);
-        Inventory.addRandomItem(['meat'], [1], 1, 3);
+        Inventory.addRandomItem(['bone'], [1], [1], [1]);
+        Inventory.addRandomItem(['meat'], [1], [1], [3]);
         if (sm.get("equipment.spear") == true) {
-            Inventory.addRandomItem(['bone'], [1], 1, 1);
-            Inventory.addRandomItem(['leather'], [1], 1, 1);
+            Inventory.addRandomItem(['bone'], [1], [1], [1]);
+            Inventory.addRandomItem(['leather'], [1], [1], [1]);
         }
     },
 
     craftSpear: function () {
         EventLog.addEvent("not the best weapon, but it's good a stabbing.");
         Equipment.addEquipment('spear');
+        Crafts.unlockCraft('Earth.shoes')
     },
 
     craftPickaxe: function () {
         EventLog.addEvent("time to get an upgrade.");
         Equipment.addEquipment('pickaxe');
+        Interaction.unlockFeature('Earth.mine');
     },
 
+    mine: function () {
+        sm.add('count.Earth.mine', 1)
+        switch (sm.get('count.Earth.mine')) {
+            case 1:
+                EventLog.addEvent("shiny.");
+            default:
+                EventLog.addEvent("a new haul of ores.")
+        }
+        if (sm.get("equipment.pickaxe") == true) {
+            Inventory.addRandomItem(['iron'], [1], [1], [4]);
+            Inventory.addRandomItem(['coal'], [1], [1], [2], 80);
+            Inventory.addRandomItem(['sulfur'], [1], [1], [2], 30);
+            Inventory.addRandomItem(['diamond'], [1], [1], [1], 2);
+        }
+    },
+
+    craftShoes: function () {
+        EventLog.addEvent("shoes protect the feet.");
+        Equipment.addEquipment('shoes');
+    },
 
 }

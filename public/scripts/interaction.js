@@ -12,6 +12,7 @@ var Interaction = {
     },
 
     newInter: function () {
+        this.inter.empty();
 
         let curPlanet = sm.get('planets.curPlanet') == -1 ? 0 : sm.get('planets.curPlanet')
         let planetBtns = eval(Navigation.planetList[curPlanet]["Name"]).planetBtns;
@@ -42,6 +43,9 @@ var Interaction = {
             Interaction.newInter();
             Interaction.inter.animate({opacity: 1}, 1000, 'linear');
         })
+        if(sm.get('planets.curPlanet') == 0) {
+            Status.updateStatus("oxygen", 100);
+        }
     },
 
     unlockFeature(feature, condition = true) {

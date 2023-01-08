@@ -37,16 +37,16 @@ var Button = {
             console.log($(this)[0].childNodes[0])
 			if ($(this).hasClass('disabled')) return;
 			$(this).animate({ 'opacity': '0' }, 150, 'linear', function () {
-				$(this)[0].childNodes[0].innerHTML = options.hover;
+				$(this)[0].childNodes[0].innerHTML = $(this).data("hoverTxt");
 				$(this).animate({ 'opacity': '1' }, 150, 'linear', function () {
 					if (!$(this).is(':hover')) {
-						$(this)[0].childNodes[0].innerHTML = options.text
+						$(this)[0].childNodes[0].innerHTML = $(this).data("originalTxt");
 					}
 				});
 			});
 		}).mouseleave(function () {
 			if ($(this).hasClass('disabled')) return;
-			$(this)[0].childNodes[0].innerHTML = options.text
+			$(this)[0].childNodes[0].innerHTML = $(this).data("originalTxt");
 		});
 		// for(let i = 0; i< 4; i++) {
 		// 	$('<span>').prependTo(buttonElement)
@@ -82,6 +82,23 @@ var Button = {
 			return;
 		}
 
+        if (sm.get('char.stats.heat') < 25) {
+            //dies to heat
+			EventLog.addEvent("its getting soooo cold, it must be a lot harder to move")
+			time*=1.2;
+        }
+
+        if (sm.get('char.stats.heat') > 80) {
+            //dies to heat
+			EventLog.addEvent("the intense heat must be making it a lot harder to move")
+			time*=1.2;
+        }
+        if (sm.get('char.stats.oxygen') == 0) {
+            //dies to o2
+			EventLog.addEvent('when oxygen runs out the body shuts down... until you find a place to inhale once more')
+			return;
+        }
+
 		if (Game.options.godMode) {
 			time = 10;
 		}
@@ -110,9 +127,3 @@ var Button = {
 		$(btn).addClass($(btn).data('class'));
 	}
 };
-
-
-// /BUTTON ANIMtTOIN
-// GIVE PLANET MODEL ITS OWN PANEL
-// ADD EVENTS
-// ADD statusbar, temp and oxygen [hunger

@@ -3,10 +3,10 @@ var Crafts = {
         this.craft = $('<div>').attr({
             id: 'crafts'
         });
-
     },
 
     newCraft: function () {
+        this.craft.empty();
 
         let curPlanet = sm.get('planets.curPlanet') == -1 ? 0 : sm.get('planets.curPlanet')
         let craftPlanetBtns = eval(Navigation.planetList[curPlanet]["Name"]).craftPlanetBtns;

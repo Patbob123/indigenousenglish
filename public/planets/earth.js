@@ -75,6 +75,9 @@ var Earth = {
             }),
             
         }
+        this.createCraftButtons();
+    },
+    createCraftButtons: function () {
         this.craftPlanetBtns = {
             "spear": new Button.Button({
                 id: 'spearBtn',
@@ -158,7 +161,7 @@ var Earth = {
             default:
                 EventLog.addEvent("walking.")
         }
-        Inventory.addItem('steps', sm.get("equipment.shoes")?2:1);
+        Inventory.addItem('steps', sm.get("equipment.shoes")?2:999);
         Interaction.unlockFeature('Earth.stone', sm.get('inv.steps') >= 3)
     },
 

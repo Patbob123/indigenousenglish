@@ -87,12 +87,6 @@ var Status = {
         if (sm.get('char.stats.hunger') < 25) {
             Status.updateStatus("heat", sm.get('char.stats.heat') - 10);
         }
-        if (sm.get('char.stats.heat') == 0) {
-            //dies to heat
-        }
-        if (sm.get('char.stats.oxygen') == 0) {
-            //dies to o2
-        }
     }
 
 }

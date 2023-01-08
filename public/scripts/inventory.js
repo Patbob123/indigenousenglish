@@ -40,7 +40,8 @@ var Inventory = {
         }
     },
 
-    addRandomItem: function (items, rarity, amountMin, amountRange) {
+    addRandomItem: function (items, rarity, amountMin, amountRange, chance = 100) {
+        if (Math.floor(Math.random() * 101) > chance) return;
         let lootTable = []
         for (let i = 0; i < items.length; i++) {
             for (let j = 0; j < rarity[i]; j++) {
@@ -48,7 +49,7 @@ var Inventory = {
             }
         }
         let itemIndex = Math.floor(Math.random() * lootTable.length);
-        Inventory.addItem(items[itemIndex], Math.floor(Math.random() * (amountRange+1)) + amountMin)
+        Inventory.addItem(items[itemIndex], Math.floor(Math.random() * (amountRange[itemIndex] + 1)) + amountMin[itemIndex])
     },
 
     printInventory: function (type) {
@@ -67,9 +68,9 @@ var Inventory = {
         $('#' + type).text(sm.get('inv.' + type))
 
     },
-    refreshInventory: function(){
+    refreshInventory: function () {
         this.inv.empty()
-        for(let i in sm.get("inv")){
+        for (let i in sm.get("inv")) {
             this.printInventory(i)
         }
     }

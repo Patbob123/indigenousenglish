@@ -31,12 +31,12 @@ var Planet = {
 		for (let i = 0; i < 5; i++) {
 			sides.append($('<span>').attr({
 				style: "--i:" + i + ";"+
-				"background-image:url(../images/"+Navigation.planetList[index]["Name"]+".png"
+				"background-image:url(public/images/"+Navigation.planetList[index]["Name"]+".png"
 					// "background:" + Navigation.planetList[index]["Background"] + ";"
 			}))
 		}
 		planetModel.append($('<div>').addClass('planetTop').attr({
-			style: "background-image:url(../images/"+Navigation.planetList[index]["Name"]+".png"
+			style: "background-image:url(public/images/"+Navigation.planetList[index]["Name"]+".png"
 		}));
 		planetModel.append(sides);
 		this.planetPanel.prepend(planetModel)

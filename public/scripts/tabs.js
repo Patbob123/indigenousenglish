@@ -15,16 +15,16 @@ var Tabs = {
 
         $('<div>').addClass('tabBtn selectedTab').text('Inventory').appendTo(this.tabs).click(function() {
             Tabs.changeTab($(this), Inventory.inv)
-        });
+        }).animate({ opacity: 1 }, 1000, 'linear');
         sm.set('game.curTab', '#inventory');
 
         $('<div>').addClass('tabBtn').text('Equip').appendTo(this.tabs).click(function() {
             Tabs.changeTab($(this), Equipment.equip)
-        });
+        }).animate({ opacity: 1 }, 1000, 'linear');
 
         $('<div>').addClass('tabBtn').text('Craft').appendTo(this.tabs).click(function() {
             Tabs.changeTab($(this), Crafts.craft)
-        });
+        }).animate({ opacity: 1 }, 1000, 'linear');
     },
 
     changeTab: function(tab, newPanel) {

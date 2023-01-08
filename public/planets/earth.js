@@ -4,12 +4,14 @@ var Earth = {
         this.planetBtns = {
             "walk": new Button.Button({
                 id: 'walkBtn',
+                name: 'Earth.walk',
                 text: "take a step",
                 click: Earth.takeStep,
                 cooldown: 750
             }),
             "stone": new Button.Button({
                 id: 'stoneBtn',
+                name: 'Earth.stone',
                 text: "pickup stone",
                 click: Earth.pickupStone,
                 cooldown: 2000,
@@ -20,6 +22,7 @@ var Earth = {
             }),
             "wood": new Button.Button({
                 id: 'woodBtn',
+                name: 'Earth.wood',
                 text: "gather wood",
                 click: Earth.gatherWood,
                 cooldown: 5000,
@@ -30,6 +33,7 @@ var Earth = {
             }),
             "kill": new Button.Button({
                 id: 'killBtn',
+                name: 'Earth.kill',
                 text: "kill",
                 click: Earth.kill,
                 cooldown: 10000,
@@ -44,6 +48,7 @@ var Earth = {
         this.craftPlanetBtns = {
             "spear": new Button.Button({
                 id: 'spearBtn',
+                name: 'Earth.spear',
                 text: "craft spear",
                 click: Earth.craftSpear,
                 cooldown: -1,

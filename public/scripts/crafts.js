@@ -14,6 +14,7 @@ var Crafts = {
         let craftPlanetBtns = eval(Navigation.planetList[curPlanet]["Name"]).craftPlanetBtns;
 
         for (let i in craftPlanetBtns) {
+            if(sm.get('crafts.' + Navigation.planetList[curPlanet]["Name"] + "." + i + 'Btn') == true) continue;
             if (sm.get('crafts.' + Navigation.planetList[curPlanet]["Name"] + "." + i) == true) {
                 let craftBtn = craftPlanetBtns[i].css('opacity', 0)
                 this.craft.append(craftBtn)

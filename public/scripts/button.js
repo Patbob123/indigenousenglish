@@ -14,17 +14,25 @@ var Button = {
 			.click(function () {
 				if (!$(this).hasClass('disabled') && $(this).data("condition")() && Button.useCost($(this).data("cost"))) {
 					$(this).addClass('disabled');
-				
-					$(this).data("handler")($(this));
-                    Button.startCooldown($(this));
 
+					console.log(sm.get('cooldown'),$(this),$(this)[0])
+					$(this).data("handler")($(this));
 					Status.move();
-				} else if(Button.useCost($(this).data("cost"))) {
+
+					if (sm.get('cooldown.' + $(this)[0].id) == -1) {
+						sm.set('count.' + $(this).data('name'), true)
+						console.log(sm.get('count'))
+						$(this).remove()
+						return
+					}
+
+					Button.startCooldown($(this));
+				} else if (Button.useCost($(this).data("cost"))) {
 					$(this).data("reject")($(this));
 				}
 			})
-			.data("class",options.btnClass)
-			.data("name",options.name)
+			.data("class", options.btnClass)
+			.data("name", options.name)
 			.data("handler", options.click)
 			.data("reject", options.reject)
 			.data("condition", options.condition)
@@ -34,7 +42,7 @@ var Button = {
 		buttonElement.append($('<span>').text(options.text));
 
 		buttonElement.mouseenter(function () {
-            console.log($(this)[0].childNodes[0])
+			console.log($(this)[0].childNodes[0])
 			if ($(this).hasClass('disabled')) return;
 			$(this).animate({ 'opacity': '0' }, 150, 'linear', function () {
 				$(this)[0].childNodes[0].innerHTML = $(this).data("hoverTxt");
@@ -76,28 +84,23 @@ var Button = {
 
 	startCooldown: function (btn) {
 		let time = sm.get('cooldown.' + $(btn)[0].id)
-		if(time == -1) {
-			sm.set('count.' + $(btn).data('name'), true)
-            $(btn).remove()
-			return;
+
+		if (sm.get('char.stats.heat') < 25) {
+			//dies to heat
+			EventLog.addEvent("its getting soooo cold, it must be a lot harder to move")
+			time *= 1.2;
 		}
 
-        if (sm.get('char.stats.heat') < 25) {
-            //dies to heat
-			EventLog.addEvent("its getting soooo cold, it must be a lot harder to move")
-			time*=1.2;
-        }
-
-        if (sm.get('char.stats.heat') > 80) {
-            //dies to heat
+		if (sm.get('char.stats.heat') > 80) {
+			//dies to heat
 			EventLog.addEvent("the intense heat must be making it a lot harder to move")
-			time*=1.2;
-        }
-        if (sm.get('char.stats.oxygen') == 0) {
-            //dies to o2
+			time *= 1.2;
+		}
+		if (sm.get('char.stats.oxygen') == 0) {
+			//dies to o2
 			EventLog.addEvent('when oxygen runs out the body shuts down... until you find a place to inhale once more')
 			return;
-        }
+		}
 
 		if (Game.options.godMode) {
 			time = 10;

@@ -4,7 +4,6 @@ var Crafts = {
             id: 'crafts'
         });
 
-        Earth.init();
     },
 
     newCraft: function () {

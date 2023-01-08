@@ -65,6 +65,8 @@ var Status = {
     },
     updateStatus: function (stat, amount) {
         if (amount < 0) amount = 0;
+        if (amount > 100) amount = 100;
+
         console.log(sm.get("char.stats." + stat))
         let name = Status.statusList[stat]["Name"]
         $('#circle' + name).attr("class", "progressbar__svg-circle shadow");
@@ -79,14 +81,19 @@ var Status = {
     },
 
     move: function () {
+        let curPlanetIndex = sm.get('planets.curPlanet') == -1 ? 0 : sm.get('planets.curPlanet')
+        let curPlanetName = Navigation.planetList[curPlanetIndex]["Name"]
         sm.add('char.moves', 1);
         if (sm.get('char.moves') == 10) {
             sm.set('char.moves', 0);
-            Status.updateStatus("hunger", sm.get('char.stats.hunger') - 5);
+            Status.updateStatus("hunger", sm.get('char.stats.hunger') - sm.get('planets.'+curPlanetName+'.hunger'));
         }
         if (sm.get('char.stats.hunger') < 25) {
-            Status.updateStatus("heat", sm.get('char.stats.heat') - 10);
+            Status.updateStatus("heat", sm.get('char.stats.heat') - sm.get('planets.'+curPlanetName+'.heat'));
         }
+        Status.updateStatus("heat", sm.get('char.stats.heat') - sm.get('planets.'+curPlanetName+'.naturalheat'))
+
+        Status.updateStatus("oxygen", sm.get('char.stats.heat') - sm.get('planets.'+curPlanetName+'.oxygen'))
     }
 
 }

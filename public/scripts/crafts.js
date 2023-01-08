@@ -4,7 +4,6 @@ var Crafts = {
             id: 'crafts'
         });
 
-        $('#menu').append(this.craft)
         Earth.init();
         sm.set('crafts.Earth.spear', true)
     },

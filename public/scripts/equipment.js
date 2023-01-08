@@ -4,7 +4,7 @@ var Equipment = {
             id: 'equipment'
         });
 
-        this.equip.prependTo('div#main')
+        // this.equip.prependTo('div#main')
         this.addEquipment('spear')
         // this.setItem('stone',5)
         // this.setItem('stone',5)

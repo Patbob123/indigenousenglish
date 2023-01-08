@@ -8,6 +8,7 @@
 @import "./crafts.css";
 @import "./equipment.css";
 @import "./bg.css";
+@import "./tabs.css";
 
 * {
   margin: 0;

@@ -4,7 +4,7 @@ var Interaction = {
             id: 'interaction'
         });
 
-        $('#menu').append(this.inter)
+        $('#stores').append(this.inter)
         Earth.init();
         sm.set('features.Earth.walk', true)
 

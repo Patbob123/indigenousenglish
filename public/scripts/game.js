@@ -13,6 +13,7 @@ var Game = window.Engine = {
         Planet.init();
         Navigation.init();
         Interaction.init();
+        Tabs.init();
         Crafts.init();
     }
 }

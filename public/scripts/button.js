@@ -10,7 +10,7 @@ var Button = {
 				id: options.id,
 				style: '--time:' + options.cooldown * 5 + 'ms'
 			})
-			.addClass('interBtn noselect')
+			.addClass(options.btnClass + ' noselect')
 			.click(function () {
 				if (!$(this).hasClass('disabled') && $(this).data("condition")() && Button.useCost($(this).data("cost"))) {
 					$(this).addClass('disabled');
@@ -22,6 +22,8 @@ var Button = {
 					$(this).data("reject")($(this));
 				}
 			})
+			.data("class",options.btnClass)
+			.data("name",options.name)
 			.data("handler", options.click)
 			.data("reject", options.reject)
 			.data("condition", options.condition)
@@ -72,6 +74,10 @@ var Button = {
 
 	startCooldown: function (btn) {
 		let time = sm.get('cooldown.' + $(btn)[0].id)
+		if(time == -1) {
+			sm.set('count.' + $(btn).data('name'), true)
+			return;
+		}
 
 		if (Game.options.godMode) {
 			time = 10;
@@ -81,7 +87,7 @@ var Button = {
 
 		$(btn)[0].childNodes[0].innerHTML = $(btn).data("originalTxt")
 		// console.log($(btn)[0].childNodes[0])
-		$(btn).removeClass('interBtn');
+		$(btn).removeClass($(btn).data('class'));
 
 		let cooldownElement = $('<div>').addClass('cooldown')
 		// cooldownElement.innerHTML = ''
@@ -98,7 +104,7 @@ var Button = {
 
 	clearCooldown: function (btn) {
 		$(btn).removeClass('disabled');
-		$(btn).addClass('interBtn');
+		$(btn).addClass($(btn).data('class'));
 	}
 };
 

@@ -4,6 +4,7 @@ var Earth = {
         this.planetBtns = {
             "walk": new Button.Button({
                 id: 'walkBtn',
+                name: 'Earth.walk',
                 text: "take a step",
                 btn: 'interBtn',
                 click: Earth.takeStep,
@@ -11,6 +12,7 @@ var Earth = {
             }),
             "stone": new Button.Button({
                 id: 'stoneBtn',
+                name: 'Earth.stone',
                 text: "pickup stone",
                 btn: 'interBtn',
                 click: Earth.pickupStone,
@@ -22,6 +24,7 @@ var Earth = {
             }),
             "wood": new Button.Button({
                 id: 'woodBtn',
+                name: 'Earth.wood',
                 text: "gather wood",
                 btn: 'interBtn',
                 click: Earth.gatherWood,
@@ -33,6 +36,7 @@ var Earth = {
             }),
             "kill": new Button.Button({
                 id: 'killBtn',
+                name: 'Earth.kill',
                 text: "kill",
                 btn: 'interBtn',
                 click: Earth.kill,
@@ -48,6 +52,7 @@ var Earth = {
         this.craftPlanetBtns = {
             "spear": new Button.Button({
                 id: 'spearBtn',
+                name: 'Earth.spear',
                 text: "craft spear",
                 btn: 'craftBtn',
                 click: Earth.craftSpear,

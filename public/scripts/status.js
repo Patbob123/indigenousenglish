@@ -64,7 +64,7 @@ var Status = {
 
     },
     updateStatus: function (stat, amount) {
-        console.log(stat)
+        // console.log(stat)
         if(sm.get("char.stats." + stat) == amount) return;
         if (amount < 0) amount = 0;
         if (amount > 100) amount = 100;

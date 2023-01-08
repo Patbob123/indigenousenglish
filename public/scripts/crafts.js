@@ -12,13 +12,15 @@ var Crafts = {
         let craftPlanetBtns = eval(Navigation.planetList[curPlanet]["Name"]).craftPlanetBtns;
 
         for (let i in craftPlanetBtns) {
-            if(sm.get('crafts.' + Navigation.planetList[curPlanet]["Name"] + "." + i + 'Btn') == true) continue;
-            if (sm.get('crafts.' + Navigation.planetList[curPlanet]["Name"] + "." + i) == true) {
-                let craftBtn = craftPlanetBtns[i].css('opacity', 0)
-                this.craft.append(craftBtn)
-                craftBtn.animate({ opacity: 1 }, 1000, 'linear');
-            } else {
-                sm.set('crafts.' + Navigation.planetList[curPlanet]["Name"] + "." + i, false)
+            console.log(sm.get('count.' + Navigation.planetList[curPlanet]["Name"]))
+            if (!sm.get('count.' + Navigation.planetList[curPlanet]["Name"] + "." + i)) {
+                if (sm.get('crafts.' + Navigation.planetList[curPlanet]["Name"] + "." + i) == true) {
+                    let craftBtn = craftPlanetBtns[i].css('opacity', 0)
+                    this.craft.append(craftBtn)
+                    craftBtn.animate({ opacity: 1 }, 1000, 'linear');
+                } else {
+                    sm.set('crafts.' + Navigation.planetList[curPlanet]["Name"] + "." + i, false)
+                }
             }
         }
     },
@@ -34,10 +36,10 @@ var Crafts = {
 
     },
 
-    planetChanged: function() {
-        this.craft.animate({opacity: 0}, 1000, 'linear', function() {
+    planetChanged: function () {
+        this.craft.animate({ opacity: 0 }, 1000, 'linear', function () {
             Crafts.newCraft();
-            Crafts.craft.animate({opacity: 1}, 1000, 'linear');
+            Crafts.craft.animate({ opacity: 1 }, 1000, 'linear');
         })
     },
 

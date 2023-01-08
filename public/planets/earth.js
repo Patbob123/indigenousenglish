@@ -173,7 +173,9 @@ var Earth = {
             default:
                 EventLog.addEvent("walking.")
         }
-        Inventory.addItem('steps', sm.get("equipment.shoes")?2:999);
+        
+        Inventory.addItem('steps', sm.get("equipment.shoes")?2:1);
+        Inventory.addItem('steps', Game.options.godMode?999:0);
         Interaction.unlockFeature('Earth.stone', sm.get('inv.steps') >= 3)
     },
 

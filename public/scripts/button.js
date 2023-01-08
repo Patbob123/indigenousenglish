@@ -34,6 +34,7 @@ var Button = {
 		buttonElement.append($('<span>').text(options.text));
 
 		buttonElement.mouseenter(function () {
+            console.log($(this)[0].childNodes[0])
 			if ($(this).hasClass('disabled')) return;
 			$(this).animate({ 'opacity': '0' }, 150, 'linear', function () {
 				$(this)[0].childNodes[0].innerHTML = $(this).data("hover");

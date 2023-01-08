@@ -39,6 +39,9 @@ var Earth = {
                     'stone': 2
                 }
             }),
+            
+        }
+        this.craftPlanetBtns = {
             "spear": new Button.Button({
                 id: 'spearBtn',
                 text: "craft spear",
@@ -100,6 +103,8 @@ var Earth = {
             default:
                 EventLog.addEvent("gathered wood.")
         }
+        Tabs.unlockTabs()
+        Crafts.unlockCraft('Earth.stone', sm.get('inv.wood') >= 2)
         Inventory.addItem('wood', 1);
     },
 

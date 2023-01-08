@@ -73,6 +73,18 @@ var Earth = {
                     'coal': 1,
                 }
             }),
+            "eat": new Button.Button({
+                id: 'mineBtn',
+                name: 'Earth.eat',
+                text: "eat",
+                btnClass: 'interBtn',
+                click: Earth.cookMeat,
+                cooldown: 10000,
+                hover: "Cost 1 Food",
+                cost: {
+                    'food': 1,
+                }
+            }),
             
         }
         this.createCraftButtons();
@@ -282,6 +294,11 @@ var Earth = {
     
     cookMeat: function(){
         EventLog.addEvent("the aroma of meat is mouth watering.");
-        Inventory.addItem('cooked meat', 5);
+        Interaction.unlockFeature('Earth.eat', sm.get('inv.wood') == 1);
+        Inventory.addItem('food', 5);
     },
+    eatFood: function(){
+        EventLog.addEvent("refreshing.");
+        Status.updateStatus("heat", sm.get('char.stats.heat')+5)
+    }
 }

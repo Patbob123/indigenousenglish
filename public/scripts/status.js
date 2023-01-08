@@ -64,6 +64,7 @@ var Status = {
 
     },
     updateStatus: function (stat, amount) {
+        console.log(stat)
         if (amount < 0) amount = 0;
         if (amount > 100) amount = 100;
 
@@ -76,7 +77,7 @@ var Status = {
         })
         setTimeout(function () {
             $('#circle' + name).attr("class", "progressbar__svg-circle shadow circle");
-        }, 1)
+        }, 2)
         sm.set("char.stats." + stat, amount)
     },
 
@@ -89,9 +90,10 @@ var Status = {
             Status.updateStatus("hunger", sm.get('char.stats.hunger') - sm.get('planets.'+curPlanetName+'.hunger'));
         }
         if (sm.get('char.stats.hunger') < 25) {
-            Status.updateStatus("heat", sm.get('char.stats.heat') - sm.get('planets.'+curPlanetName+'.heat'));
+            Status.updateStatus("heat", sm.get('char.stats.heat') - sm.get('planets.'+curPlanetName+'.heat')- sm.get('planets.'+curPlanetName+'.naturalheat'));
+        }else{
+            Status.updateStatus("heat", sm.get('char.stats.heat') - sm.get('planets.'+curPlanetName+'.naturalheat'))
         }
-        Status.updateStatus("heat", sm.get('char.stats.heat') - sm.get('planets.'+curPlanetName+'.naturalheat'))
 
         Status.updateStatus("oxygen", sm.get('char.stats.heat') - sm.get('planets.'+curPlanetName+'.oxygen'))
     }

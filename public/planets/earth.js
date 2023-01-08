@@ -22,7 +22,7 @@ var Earth = {
                 btnClass: 'interBtn',
                 click: Earth.pickupStone,
                 cooldown: 2000,
-                hover: "Cost 3 Steps",
+                hover: "Cost 2 Steps",
                 cost: {
                     'steps': 2
                 }
@@ -34,7 +34,7 @@ var Earth = {
                 btnClass: 'interBtn',
                 click: Earth.gatherWood,
                 cooldown: 5000,
-                hover: "Cost 4 Steps",
+                hover: "Cost 2 Steps",
                 cost: {
                     'steps': 2,
                 },
@@ -48,7 +48,7 @@ var Earth = {
                 cooldown: 10000,
                 hover: "Cost 3 Steps, 2 Stones",
                 cost: {
-                    'steps': 6,
+                    'steps': 3,
                     'stone': 2
                 }
             }),
@@ -78,7 +78,7 @@ var Earth = {
                 name: 'Earth.eat',
                 text: "eat",
                 btnClass: 'interBtn',
-                click: Earth.cookMeat,
+                click: Earth.eatFood,
                 cooldown: 10000,
                 hover: "Cost 1 Food",
                 cost: {
@@ -294,11 +294,12 @@ var Earth = {
     
     cookMeat: function(){
         EventLog.addEvent("the aroma of meat is mouth watering.");
-        Interaction.unlockFeature('Earth.eat', sm.get('inv.wood') == 1);
         Inventory.addItem('food', 5);
+        Interaction.unlockFeature('Earth.eat', sm.get('inv.food') == 5);
     },
     eatFood: function(){
         EventLog.addEvent("refreshing.");
-        Status.updateStatus("heat", sm.get('char.stats.heat')+5)
+        Status.updateStatus("heat", sm.get('char.stats.heat')+20)
+        Status.updateStatus("hunger", sm.get('char.stats.hunger')+20)
     }
 }

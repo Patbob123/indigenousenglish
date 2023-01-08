@@ -5,7 +5,6 @@ var Crafts = {
         });
 
         Earth.init();
-        sm.set('crafts.Earth.spear', true)
     },
 
     newCraft: function () {
@@ -26,6 +25,7 @@ var Crafts = {
 
     addCraft: function (craft) {
         craft = craft.split('.')
+        console.log(craft)
         let craftPlanetBtns = eval(craft[0]).craftPlanetBtns;
 
         let craftBtn = craftPlanetBtns[craft[1]].css('opacity', 0)
@@ -42,6 +42,7 @@ var Crafts = {
     },
 
     unlockCraft(craft, condition = true) {
+        console.log(sm.get('crafts.' + craft))
         if (condition && !sm.get('crafts.' + craft)) {
             sm.set('crafts.' + craft, true);
             this.addCraft(craft)

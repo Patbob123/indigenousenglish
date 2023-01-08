@@ -5,12 +5,14 @@ var Earth = {
             "walk": new Button.Button({
                 id: 'walkBtn',
                 text: "take a step",
+                btn: 'interBtn',
                 click: Earth.takeStep,
                 cooldown: 750
             }),
             "stone": new Button.Button({
                 id: 'stoneBtn',
                 text: "pickup stone",
+                btn: 'interBtn',
                 click: Earth.pickupStone,
                 cooldown: 2000,
                 hover: "Cost 3 Steps",
@@ -21,6 +23,7 @@ var Earth = {
             "wood": new Button.Button({
                 id: 'woodBtn',
                 text: "gather wood",
+                btn: 'interBtn',
                 click: Earth.gatherWood,
                 cooldown: 5000,
                 hover: "Cost 4 Steps",
@@ -31,6 +34,7 @@ var Earth = {
             "kill": new Button.Button({
                 id: 'killBtn',
                 text: "kill",
+                btn: 'interBtn',
                 click: Earth.kill,
                 cooldown: 10000,
                 hover: "Cost 12 Steps, 3 Stones",
@@ -45,6 +49,7 @@ var Earth = {
             "spear": new Button.Button({
                 id: 'spearBtn',
                 text: "craft spear",
+                btn: 'craftBtn',
                 click: Earth.craftSpear,
                 cooldown: -1,
                 hover: "Cost 10 wood, 3 bones",
@@ -104,12 +109,13 @@ var Earth = {
                 EventLog.addEvent("gathered wood.")
 
         }
+        Inventory.addItem('wood', 1);
+
         if (!sm.get('features.tabs') && sm.get('inv.wood') >= 2 ) {
             Tabs.unlockTabs();
         }
-
-        Crafts.unlockCraft('spear', sm.get('inv.wood') >= 2)
-        Inventory.addItem('wood', 1);
+        Crafts.unlockCraft('Earth.spear', sm.get('inv.wood') >= 2)
+        
     },
 
     kill: function () {

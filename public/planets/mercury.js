@@ -4,39 +4,64 @@ var Mercury = {
         this.planetBtns = {
             "walk": new Button.Button({
                 id: 'walkBtn',
+                name: 'Earth.walk',
                 text: "take a step",
+                btnClass: 'interBtn',
                 click: Earth.takeStep,
-                cooldown: 1000,
-                width: '80px',
+                cooldown: 750
             }),
             "stone": new Button.Button({
                 id: 'stoneBtn',
+                name: 'Earth.stone',
                 text: "pickup stone",
-                click: Earth.takeStep,
+                btnClass: 'interBtn',
+                click: Earth.pickupStone,
                 cooldown: 2000,
-                hover: "Cost 5 Steps",
+                hover: "Cost 3 Steps",
                 cost: {
-                    'steps': 5
-                },
-                width: '80px',
+                    'steps': 3
+                }
             }),
             "wood": new Button.Button({
                 id: 'woodBtn',
+                name: 'Earth.wood',
                 text: "gather wood",
-                click: Earth.takeStep,
+                btnClass: 'interBtn',
+                click: Earth.gatherWood,
                 cooldown: 5000,
-                width: '80px',
+                hover: "Cost 4 Steps",
+                cost: {
+                    'steps': 4,
+                },
             }),
             "kill": new Button.Button({
                 id: 'killBtn',
-                text: "KILL",
-                click: Earth.takeStep,
+                name: 'Earth.kill',
+                text: "kill",
+                btnClass: 'interBtn',
+                click: Earth.kill,
                 cooldown: 10000,
+                hover: "Cost 12 Steps, 3 Stones",
                 cost: {
-                    'steps': 15,
+                    'steps': 12,
                     'stone': 2
+                }
+            }),
+            
+        }
+        this.craftPlanetBtns = {
+            "spear": new Button.Button({
+                id: 'spearBtn',
+                name: 'Earth.spear',
+                text: "craft spear",
+                btnClass: 'craftBtn',
+                click: Earth.craftSpear,
+                cooldown: -1,
+                hover: "Cost 10 wood, 3 bones",
+                cost: {
+                    'wood': 10,
+                    'bone': 3,
                 },
-                width: '80px',
             }),
         }
 

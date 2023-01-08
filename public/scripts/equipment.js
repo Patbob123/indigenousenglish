@@ -5,22 +5,19 @@ var Equipment = {
         });
 
         // this.equip.prependTo('div#main')
-        this.addEquipment('spear')
+        // this.addEquipment('spear')
         // this.setItem('stone',5)
         // this.setItem('stone',5)
         // this.addItem('stone',5)
     },
 
     addEquipment: function (type) {
-        if (typeof amount != 'number') return;
-        if (amount != null) {
-            if (sm.get('equipment.' + type) === false) {
-                console.log(sm.get('equipment.' + type))
-                sm.set('equipment.' + type, true);
-                this.printEquipment(type)
-            }
+        if (sm.get('equipment.' + type) === false) {
+            console.log(sm.get('equipment.' + type))
             sm.set('equipment.' + type, true);
+            this.printEquipment(type)
         }
+        sm.set('equipment.' + type, true);
     },
 
     printEquipment: function (type) {
@@ -33,4 +30,10 @@ var Equipment = {
         });
 
     },
+    refreshEquipment: function(){
+        this.equip.empty()
+        for(let i in sm.get("equipment")){
+            this.printEquipment(i)
+        }
+    }
 }

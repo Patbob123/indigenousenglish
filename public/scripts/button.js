@@ -14,8 +14,9 @@ var Button = {
 			.click(function () {
 				if (!$(this).hasClass('disabled') && $(this).data("condition")() && Button.useCost($(this).data("cost"))) {
 					$(this).addClass('disabled');
-					Button.startCooldown($(this));
+				
 					$(this).data("handler")($(this));
+                    Button.startCooldown($(this));
 
 					Status.move();
 				} else if(Button.useCost($(this).data("cost"))) {
@@ -76,6 +77,7 @@ var Button = {
 		let time = sm.get('cooldown.' + $(btn)[0].id)
 		if(time == -1) {
 			sm.set('count.' + $(btn).data('name'), true)
+            $(btn).remove()
 			return;
 		}
 

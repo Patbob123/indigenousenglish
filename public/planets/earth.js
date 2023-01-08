@@ -6,7 +6,7 @@ var Earth = {
                 id: 'walkBtn',
                 name: 'Earth.walk',
                 text: "take a step",
-                btn: 'interBtn',
+                btnClass: 'interBtn',
                 click: Earth.takeStep,
                 cooldown: 750
             }),
@@ -14,7 +14,7 @@ var Earth = {
                 id: 'stoneBtn',
                 name: 'Earth.stone',
                 text: "pickup stone",
-                btn: 'interBtn',
+                btnClass: 'interBtn',
                 click: Earth.pickupStone,
                 cooldown: 2000,
                 hover: "Cost 3 Steps",
@@ -26,7 +26,7 @@ var Earth = {
                 id: 'woodBtn',
                 name: 'Earth.wood',
                 text: "gather wood",
-                btn: 'interBtn',
+                btnClass: 'interBtn',
                 click: Earth.gatherWood,
                 cooldown: 5000,
                 hover: "Cost 4 Steps",
@@ -38,12 +38,12 @@ var Earth = {
                 id: 'killBtn',
                 name: 'Earth.kill',
                 text: "kill",
-                btn: 'interBtn',
+                btnClass: 'interBtn',
                 click: Earth.kill,
                 cooldown: 10000,
-                hover: "Cost 12 Steps, 3 Stones",
+                hover: "Cost 6 Steps, 2 Stones",
                 cost: {
-                    'steps': 12,
+                    'steps': 6,
                     'stone': 2
                 }
             }),
@@ -54,10 +54,23 @@ var Earth = {
                 id: 'spearBtn',
                 name: 'Earth.spear',
                 text: "craft spear",
-                btn: 'craftBtn',
+                btnClass: 'craftBtn',
                 click: Earth.craftSpear,
                 cooldown: -1,
                 hover: "Cost 10 wood, 3 bones",
+                cost: {
+                    'wood': 10,
+                    'bone': 3,
+                },
+            }),
+            "pickaxe": new Button.Button({
+                id: 'pickaxeBtn',
+                name: 'Earth.pickaxe',
+                text: "craft pickaxe",
+                btnClass: 'craftBtn',
+                click: Earth.craftPickaxe,
+                cooldown: -1,
+                hover: "Cost 10 wood, 10 stones",
                 cost: {
                     'wood': 10,
                     'bone': 3,
@@ -120,6 +133,7 @@ var Earth = {
             Tabs.unlockTabs();
         }
         Crafts.unlockCraft('Earth.spear', sm.get('inv.wood') >= 2)
+        Crafts.unlockCraft('Earth.pickaxe', sm.get('inv.wood') >= 2)
         
     },
 
@@ -142,6 +156,11 @@ var Earth = {
     craftSpear: function () {
         EventLog.addEvent("not the best weapon, but it's good a stabbing.");
         Equipment.addEquipment('spear');
+    },
+
+    craftPickaxe: function () {
+        EventLog.addEvent("time to get an upgrade.");
+        Equipment.addEquipment('pickaxe');
     },
 
 

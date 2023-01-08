@@ -15,11 +15,13 @@ var Tabs = {
 
         $('<div>').addClass('tabBtn selectedTab').text('Inventory').appendTo(this.tabs).click(function() {
             Tabs.changeTab($(this), Inventory.inv)
+            Inventory.refreshInventory()
         }).animate({ opacity: 1 }, 1000, 'linear');
         sm.set('game.curTab', '#inventory');
 
         $('<div>').addClass('tabBtn').text('Equip').appendTo(this.tabs).click(function() {
             Tabs.changeTab($(this), Equipment.equip)
+            Equipment.refreshEquipment()
         }).animate({ opacity: 1 }, 1000, 'linear');
 
         $('<div>').addClass('tabBtn').text('Craft').appendTo(this.tabs).click(function() {

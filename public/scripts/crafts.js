@@ -49,6 +49,6 @@ var Crafts = {
             this.addCraft(craft)
             return true;
         } else return false;
-    }
+    },
 }
 

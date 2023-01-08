@@ -66,5 +66,11 @@ var Inventory = {
     updateInventory: function (type) {
         $('#' + type).text(sm.get('inv.' + type))
 
+    },
+    refreshInventory: function(){
+        this.inv.empty()
+        for(let i in sm.get("inv")){
+            this.printInventory(i)
+        }
     }
 }

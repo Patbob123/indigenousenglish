@@ -11,8 +11,8 @@ var Game = window.Engine = {
         Inventory.init();
         Equipment.init();
         Planet.init();
-        Navigation.init();
         Interaction.init();
+        Navigation.init();
         Tabs.init();
         Crafts.init();
     }

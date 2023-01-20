@@ -1,49 +1,34 @@
-#navigation {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding-left: 10%;
+#navigation
+{
+    top:0;
     width: 100%;
-    height: 10%;
-    margin-top:1%;
-
-    gap: 1rem;
-    overflow-y:scroll;
-    white-space: nowrap;
-    margin-bottom: 0;
-    
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
 }
 
-::-webkit-scrollbar {
-    width: 0;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
+.nbe3u1{
+    padding: 5%;
+    width: 30%;
+    transform: skew(30deg) translateX(10%);
+    background-image: linear-gradient(180deg, #2e132d 0%, #4b2e58 100%);
+    border-radius: 2rem;
 }
 
-.navBtn {
-    width: 8%;
-	height: 100%;
-	cursor: pointer;
-	border: none;
-	color: rgba(255,255,255,0.5);
-	border-radius: 4px;
-	box-shadow: inset 0px 3px 5px rgba(255,255,255,0.5), 0px 0px 10px rgba(0,0,0,0.15);
-	background: rgb(2,0,36);
-    background: linear-gradient(45deg, rgba(2,0,36,0) 5%, rgba(255,255,255,.5) 6%, rgba(255,255,255,0) 9%, rgba(255,255,255,.5) 10%, rgba(255,255,255,0) 17%, rgba(255,255,255,.5) 19%, rgba(255,255,255,0) 21%);
-	background-size: 150%;
-	background-position: right;
-	transition: 0.5s;
-	
-	-webkit-tap-highlight-color: transparent;
+.antology{
+    padding: 5%;
+    width: 32%;
+    transform: skew(-30deg) translateX(-10%);
+    background-image: linear-gradient(180deg, #342970 0%, #553983 100%);
+    border-radius: 2rem;
 }
-.navBtn:hover {
-	background-position: left;
-	color: white;
-	box-shadow: inset 0px 3px 5px rgba(255,255,255,1), 0px 0px 10px rgba(0,0,0,0.25);
+.antology span{
+    position: absolute;
+    transform: skew(30deg) translateX(10%) translateY(-50%);
+    font-size: 3rem;
 }
-
-
-.selectedPlanet {
-    background-color: #2b0e4b;
-    outline-color: #6d25ad;
-    animation: transition 2s linear;
+.nbe3u1 span{
+    position: absolute;
+    transform: skew(-30deg) translateX(-10%) translateY(-50%);
+    font-size: 3rem;
 }

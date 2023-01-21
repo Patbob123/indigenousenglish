@@ -15,10 +15,13 @@ var Navigation = {
         let nbe3u1 = $('<div>').addClass('nbe3u1').attr({
         })
         nbe3u1.append($('<span>').text('Mr.Chon NBE3U1'));
-        antology.append($('<span>').text("Dawson's Anthology of Indigenity"));
+        antology.append($('<span>').text("Dawson's Anthology of Indigeneity "));
         this.nav.prepend(nbe3u1);
         this.nav.prepend(antology);
-       
+        nbe3u1.animate({ opacity: 1 }, 100, 'linear', function () {
+        })
+        antology.animate({ opacity: 1 }, 100, 'linear', function () {
+        })
     }
 
 }

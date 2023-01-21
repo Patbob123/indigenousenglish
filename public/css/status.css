@@ -58,11 +58,14 @@
 }
 
 .progressbar__text {
+    text-align: center;
+	font-weight: bolder;
+	font-size: large;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	padding: 0.25em 0.5em;
-	color: hsl(0, 0%, 100%);
+	color: var(--color2);
 	border-radius: 0.25em;
 	transform: translate(-50%, -50%) rotate(90deg);
 }
@@ -98,8 +101,10 @@
 }
 
 .reflectionplate{
-	/* align-items: flex-end;
-	display: flex; */
+	/* align-items: flex-end; */
+	padding: 3%;
+	display: flex;
+	align-items: center;
 	flex-direction: column;
 	opacity: 0;
 	position: absolute;
@@ -108,11 +113,13 @@
 	border-radius: 20px;
 	background-color: ivory;
 	z-index: 4;
+	box-shadow: 30px 30px 30px rgb(0 0 0 / 0.9);
 }
 
 .xmark{
 	position: absolute;
-	right:0;
+	right: 0;
+	top: 0;
 	width:10%;
 	height:10%;
     font-size: 30px; 
@@ -121,11 +128,18 @@
 }
 
 .reflecttext{
-
+	font-family: 'Times New Roman', Times, serif;
 	white-space:pre-wrap;
 	word-wrap: normal;
 	height: 95%;
 	width: 100%;
-	padding: 5%;
-	color:rgb(255, 0, 0)
+
+	color:rgb(0, 0, 0)
+}
+
+#video{
+	width: 100%;
+	height: 55%;
+	border-radius: 3rem;
+	margin-bottom: 5%;
 }

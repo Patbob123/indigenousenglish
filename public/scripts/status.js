@@ -6,8 +6,8 @@ var Status = {
             Size: 50,
             Row: 0,
             Text: "Unit 1",
-            Color1: "#fcb103",
-            Color2: "#fc2c03",
+            Color1: "#FFFF00",
+            Color2: "#ffffff",
             Color3: "#8f4500",
         },
         "oxygen": {
@@ -16,9 +16,19 @@ var Status = {
             Size: 50,
             Row: 1,
             Text: "Unit 2",
-            Color1: "#fc2c03",
-            Color2: "#fc2c03",
+            Color1: "#ff0020",
+            Color2: "#ffffff",
             Color3: "#8f4500",
+        },
+        "works": {
+            Name: "works",
+            Start: 100,
+            Size: 60,
+            Row: 1,
+            Text: "Works\nCited",
+            Color1: "#001001",
+            Color2: "#001001",
+            Color3: "#8f4500",//rem,
         },
         "hunger": {
             Name: "hunger",
@@ -26,8 +36,8 @@ var Status = {
             Size: 50,
             Row: 1,
             Text: "Unit 3",
-            Color1: "#8f4500",
-            Color2: "#fc2c03",
+            Color1: "#ffa500",
+            Color2: "#ffffff",
             Color3: "#8f4500",//rem,
         },
         "final": {
@@ -36,10 +46,11 @@ var Status = {
             Size: 50,
             Row: 2,
             Text: "Final",
-            Color1: "#8f4500",
-            Color2: "#fc2c03",
+            Color1: "#0000FF",
+            Color2: "#ffffff",
             Color3: "#8f4500",//rem,
         },
+        
     },
     init: function () {
         this.status = $('<div>').attr({
@@ -75,6 +86,7 @@ var Status = {
             let x = $('<div>').addClass('xmark').attr({
              //   id: "reflect"+index
             }).click(function () {
+                
                 reflectionPlate.animate({ opacity: 0 }, 100, 'linear', function () {
                     // EventLog.clearHidden();
                     $("#reflect"+index).remove()
@@ -92,7 +104,17 @@ var Status = {
 
             reflectionPlate.appendTo('div#bg')
             x.appendTo("div#reflect"+index)
+            if(name == "oxygen"){
+                let unit2vid = $('<video />', {
+                    id: 'video',
+                    src: "public/videos/somebears.mp4",
+                    type: 'video/mp4',
+                    controls: true
+                  });
+                  unit2vid.appendTo("div#reflect"+index)
+            }
             reflecttext.appendTo("div#reflect"+index)
+       
             reflectionPlate.animate({ opacity: 1 }, 100, 'linear', function () {
                 // EventLog.clearHidden();
             });

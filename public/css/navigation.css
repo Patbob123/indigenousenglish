@@ -2,6 +2,7 @@
 {
     top:0;
     width: 100%;
+    height: 20%;
     position: absolute;
     display: flex;
     justify-content: space-between;
@@ -19,17 +20,19 @@
 .antology{
     opacity: 0;
     padding: 5%;
-    width: 32%;
+    width: 37%;
     transform: skew(-30deg) translateX(-10%);
     background-image: linear-gradient(180deg, #43368f 0%, #342970 100%);
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
 }
 .antology span{
+    color:rgb(255, 255, 255);
     position: absolute;
     transform: skew(30deg) translateX(10%) translateY(-50%);
     font-size: 3rem;
 }
 .nbe3u1 span{
+    color:rgb(255, 255, 255);
     position: absolute;
     transform: skew(-30deg) translateX(-10%) translateY(-50%);
     font-size: 3rem;

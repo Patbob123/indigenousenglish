@@ -131,6 +131,7 @@ var Status = {
             Size: 50,
             Row: 0,
             Text: "Unit 1",
+            Text2: "How do we learn to be human?",
             Color1: "#FFFF00",
             Color2: "#ffffff",
             Color3: "#8f4500",
@@ -142,6 +143,7 @@ var Status = {
             Size: 50,
             Row: 1,
             Text: "Unit 2",
+            Text2: "How do we learn to be good community members?",
             Color1: "#ff0020",
             Color2: "#ffffff",
             Color3: "#8f4500",
@@ -153,6 +155,7 @@ var Status = {
             Size: 60,
             Row: 1,
             Text: "Works\nCited",
+            Text2: "",
             Color1: "#001001",
             Color2: "#001001",
             Color3: "#8f4500",//rem,
@@ -164,6 +167,7 @@ var Status = {
             Size: 50,
             Row: 1,
             Text: "Unit 3",
+            Text2: "How do we learn to live together?",
             Color1: "#ffa500",
             Color2: "#ffffff",
             Color3: "#8f4500",//rem,
@@ -175,6 +179,7 @@ var Status = {
             Size: 50,
             Row: 2,
             Text: "Final",
+            Text2: "Why does Indigeneous literature matter?",
             Color1: "#0000FF",
             Color2: "#ffffff",
             Color3: "#8f4500",//rem,
@@ -265,8 +270,9 @@ var Status = {
         });
     
         let text = $('<div>').addClass('progressbar__text shadow').text(Status.statusList[index]["Text"]);
+        let text2 = $('<div>').addClass('progressbar__texttwo shadow').text(Status.statusList[index]["Text2"]);
         statusBar.append(text)
-
+        statusBar.append(text2)
 
 
     },

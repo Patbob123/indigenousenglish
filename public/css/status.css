@@ -1,9 +1,10 @@
 #status{
 	display:flex;
-	justify-content: center space-evenly;
+	justify-content: space-between;
 	align-items: center;
 	flex-direction: column;
 	width:80%;
+	height:100%;
 }
 .statusRow{
 	width:100%;
@@ -60,7 +61,7 @@
 .progressbar__text {
     text-align: center;
 	font-weight: bolder;
-	font-size: large;
+	font-size: 2rem;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -124,6 +125,8 @@
 	height:10%;
     font-size: 30px; 
     color: rgb(255, 0, 0);
+	border-radius: 50%;
+	border-color: rgb(255, 0, 0);
     text-align: center;
 }
 

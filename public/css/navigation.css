@@ -29,11 +29,11 @@
     color:rgb(255, 255, 255);
     position: absolute;
     transform: skew(30deg) translateX(10%) translateY(-50%);
-    font-size: 3rem;
+    font-size: 3vw;
 }
 .nbe3u1 span{
     color:rgb(255, 255, 255);
     position: absolute;
     transform: skew(-30deg) translateX(-10%) translateY(-50%);
-    font-size: 3rem;
+    font-size: 3vw;
 }
